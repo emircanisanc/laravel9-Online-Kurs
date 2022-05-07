@@ -17,39 +17,9 @@
 
 
             <li>
-                <a href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                <a href="{{route('admin.index')}}"><ion-icon name="home-outline"></ion-icon> Dashboard</a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-desktop "></i>UI Elements <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="panel-tabs.html"><i class="fa fa-toggle-on"></i>Tabs & Panels</a>
-                    </li>
-                    <li>
-                        <a href="notification.html"><i class="fa fa-bell "></i>Notifications</a>
-                    </li>
-                    <li>
-                        <a href="progress.html"><i class="fa fa-circle-o "></i>Progressbars</a>
-                    </li>
-                    <li>
-                        <a href="buttons.html"><i class="fa fa-code "></i>Buttons</a>
-                    </li>
-                    <li>
-                        <a href="icons.html"><i class="fa fa-bug "></i>Icons</a>
-                    </li>
-                    <li>
-                        <a href="wizard.html"><i class="fa fa-bug "></i>Wizard</a>
-                    </li>
-                    <li>
-                        <a href="typography.html"><i class="fa fa-edit "></i>Typography</a>
-                    </li>
-                    <li>
-                        <a href="grid.html"><i class="fa fa-eyedropper "></i>Grid</a>
-                    </li>
 
-
-                </ul>
-            </li>
             <li>
                 <a href="#"><i class="fa fa-yelp "></i>Extra Pages <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -74,31 +44,42 @@
                 </ul>
             </li>
             <li>
-                <a href="table.html"><i class="fa fa-flash "></i>Data Tables </a>
+                <a href="table.html"><ion-icon name="albums-outline"></ion-icon> Data Tables </a>
 
             </li>
             <li>
-                <a href="#"><i class="fa fa-bicycle "></i>Forms <span class="fa arrow"></span></a>
+                <a href="#"><ion-icon name="document-outline"></ion-icon> Category <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
 
                     <li>
-                        <a href="form.html"><i class="fa fa-desktop "></i>Basic </a>
+                        <a href="{{route('admin.category.index')}}"><ion-icon name="copy-outline"></ion-icon> Categories </a>
                     </li>
                     <li>
-                        <a href="form-advance.html"><i class="fa fa-code "></i>Advance</a>
+                        <a href="{{route('admin.category.create')}}"><ion-icon name="duplicate-outline"></ion-icon> Create Category</a>
                     </li>
-
 
                 </ul>
             </li>
             <li>
-                <a href="gallery.html"><i class="fa fa-anchor "></i>Gallery</a>
+                <a href="/admin/courses"><i class="fa fa-anchor "></i> Courses</a>
             </li>
             <li>
-                <a href="error.html"><i class="fa fa-bug "></i>Error Page</a>
+                <a href="/admin/comments"><ion-icon name="chatbox-ellipses-outline"></ion-icon> Comments</a>
             </li>
             <li>
-                <a href="login.html"><i class="fa fa-sign-in "></i>Login Page</a>
+                <a href="/admin/faq"><i class="fa fa-sign-in "></i> FAQ</a>
+            </li>
+            <li>
+                <a href="/admin/messages"><ion-icon name="mail-outline"></ion-icon> Messages</a>
+            </li>
+            <li>
+                <a href="/admin/user"><ion-icon name="person-circle-outline"></ion-icon> Users</a>
+            </li>
+            <li>
+                <a href="/admin/social"><ion-icon name="earth-outline"></ion-icon> Social</a>
+            </li>
+            <li>
+                <a href="/admin/setting"><ion-icon name="construct-outline"></ion-icon> Settings</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-sitemap "></i>Multilevel Link <span class="fa arrow"></span></a>
@@ -133,3 +114,5 @@
 
 </nav>
 <!-- END SIDEBAR-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

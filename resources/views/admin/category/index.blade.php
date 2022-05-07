@@ -25,6 +25,7 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
+                                    <th>Parent</th>
                                     <th>Title</th>
                                     <th>Keywords</th>
                                     <th>Description</th>
@@ -39,14 +40,19 @@
                                 @foreach($data as $rs)
                                 <tr>
                                     <td>{{$rs->id}}</td>
+                                    <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs, $rs->title) }}</td>
                                     <td>{{$rs->title}}</td>
                                     <td>{{$rs->keywords}}</td>
                                     <td>{{$rs->description}}</td>
-                                    <td>{{$rs->image}}</td>
+                                    <td>
+                                        @if ($rs->image)
+                                        <img src = "{{Storage::url($rs->image)}}" style="height: 40px">
+                                        @endif
+                                    </td>
                                     <td>{{$rs->status}}</td>
-                                    <td><a href="/admin/category/edit/{{$rs->id}}"><button type="button" class="btn btn-info">Edit</button></a></td>
-                                    <td><a href="/admin/category/delete/{{$rs->id}}"><button type="button" class="btn btn-danger">Delete</button></a></td>
-                                    <td><a href="/admin/category/show/{{$rs->id}}"><button type="button" class="btn btn-success">Show</button></a></td>
+                                    <td><a href="{{route('admin.category.edit', ['id'=>$rs->id])}}"><button type="button" class="btn btn-info">Edit</button></a></td>
+                                    <td><a href="{{route('admin.category.destroy', ['id'=>$rs->id])}}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                                    <td><a href="{{route('admin.category.show', ['id'=>$rs->id])}}"><button type="button" class="btn btn-success">Show</button></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
