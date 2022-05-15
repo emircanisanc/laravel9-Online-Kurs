@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('title', 'Category List')
+@section('title', 'Course List')
 
 @section('content')
 
@@ -8,16 +8,16 @@
     <div id="page-inner" style="width:100%">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-head-line">CATEGORY LIST</h1>
+                <h1 class="page-head-line">COURSE LIST</h1>
 
             </div>
         </div>
 
         <div class="col-md-6" style="width:100%">
-            <!--   CATEGORIES -->
+            <!--   COURSES -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Category List
+                    Course List
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -25,11 +25,13 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Parent</th>
+                                    <th>Category</th>
                                     <th>Title</th>
                                     <th>Keywords</th>
                                     <th>Description</th>
                                     <th>Image</th>
+                                    <th>Detail</th>
+                                    <th>Price</th>
                                     <th>Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -40,7 +42,7 @@
                                 @foreach($data as $rs)
                                 <tr>
                                     <td>{{$rs->id}}</td>
-                                    <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs, $rs->title) }}</td>
+                                    <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs->category, $rs->category->title) }}</td>
                                     <td>{{$rs->title}}</td>
                                     <td>{{$rs->keywords}}</td>
                                     <td>{{$rs->description}}</td>
@@ -49,10 +51,12 @@
                                         <img src = "{{Storage::url($rs->image)}}" style="height: 40px">
                                         @endif
                                     </td>
+                                    <td>{!! $rs->detail !!}</td>
+                                    <td>{{$rs->price}}</td>
                                     <td>{{$rs->status}}</td>
-                                    <td><a href="{{route('admin.category.edit', ['id'=>$rs->id])}}"><button type="button" class="btn btn-info">Edit</button></a></td>
-                                    <td><a href="{{route('admin.category.destroy', ['id'=>$rs->id])}}"><button type="button" class="btn btn-danger">Delete</button></a></td>
-                                    <td><a href="{{route('admin.category.show', ['id'=>$rs->id])}}"><button type="button" class="btn btn-success">Show</button></a></td>
+                                    <td><a href="{{route('admin.course.edit', ['id'=>$rs->id])}}"><button type="button" class="btn btn-info">Edit</button></a></td>
+                                    <td><a href="{{route('admin.course.destroy', ['id'=>$rs->id])}}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                                    <td><a href="{{route('admin.course.show', ['id'=>$rs->id])}}"><button type="button" class="btn btn-success">Show</button></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

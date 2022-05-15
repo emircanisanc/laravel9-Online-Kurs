@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('title', 'Category List')
+@section('title', 'Content List')
 
 @section('content')
 
@@ -8,16 +8,16 @@
     <div id="page-inner" style="width:100%">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-head-line">CATEGORY LIST</h1>
+                <h1 class="page-head-line">CONTENT LIST</h1>
 
             </div>
         </div>
 
         <div class="col-md-6" style="width:100%">
-            <!--   CATEGORIES -->
+            <!--   CONTENTS -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Category List
+                    Content List
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -25,11 +25,15 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Parent</th>
+                                    <th>Course</th>
                                     <th>Title</th>
                                     <th>Keywords</th>
                                     <th>Description</th>
                                     <th>Image</th>
+                                    <th>Image Gallery</th>
+                                    <th>Detail</th>
+                                    <th>File</th>
+                                    <th>Videolink</th>
                                     <th>Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -40,7 +44,7 @@
                                 @foreach($data as $rs)
                                 <tr>
                                     <td>{{$rs->id}}</td>
-                                    <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs, $rs->title) }}</td>
+                                    <td>{{$rs->course_id}}</td>
                                     <td>{{$rs->title}}</td>
                                     <td>{{$rs->keywords}}</td>
                                     <td>{{$rs->description}}</td>
@@ -49,10 +53,19 @@
                                         <img src = "{{Storage::url($rs->image)}}" style="height: 40px">
                                         @endif
                                     </td>
+                                    <td>
+                                        <a href="{{route('admin.image.index', ['pid'=>$rs->id])}}"
+                                        onclick="return !window.open(this.href, '', 'top=50 left=100 width=1100, height=700')">
+                                            <img src="{{asset('assets')}}/adminassets/img/gallery.png">
+                                        </a>
+                                    </td>
+                                    <td>{{$rs->detail}}</td>
+                                    <td>{{$rs->file}}</td>
+                                    <td>{{$rs->videolink}}</td>
                                     <td>{{$rs->status}}</td>
-                                    <td><a href="{{route('admin.category.edit', ['id'=>$rs->id])}}"><button type="button" class="btn btn-info">Edit</button></a></td>
-                                    <td><a href="{{route('admin.category.destroy', ['id'=>$rs->id])}}"><button type="button" class="btn btn-danger">Delete</button></a></td>
-                                    <td><a href="{{route('admin.category.show', ['id'=>$rs->id])}}"><button type="button" class="btn btn-success">Show</button></a></td>
+                                    <td><a href="{{route('admin.content.edit', ['id'=>$rs->id])}}"><button type="button" class="btn btn-info">Edit</button></a></td>
+                                    <td><a href="{{route('admin.content.destroy', ['id'=>$rs->id])}}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                                    <td><a href="{{route('admin.content.show', ['id'=>$rs->id])}}"><button type="button" class="btn btn-success">Show</button></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

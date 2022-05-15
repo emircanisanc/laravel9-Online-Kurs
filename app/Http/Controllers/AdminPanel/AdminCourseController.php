@@ -4,28 +4,13 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Image;
 
-class CategoryController extends Controller
+class AdminCourseController extends Controller
 {
-
-    protected $appends =
-    [
-        'getParentsTree'
-    ];
-
-    public static function getParentsTree($category, $title)
-    {
-        if($category->parent_id == 0)
-        {
-            return $title;
-        }
-        $parent = Category::find($category->parent_id);
-        $title = $parent->title . ' > ' . $title;
-        return CategoryController::getParentsTree($parent, $title);
-    }
 
     /**
      * Display a listing of the resource.
@@ -35,8 +20,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $data = Category::all();
-        return view ('admin.category.index',['data' => $data]);
+        $data = Course::all();
+        return view ('admin.course.index',['data' => $data]);
     }
 
     /**
@@ -48,7 +33,7 @@ class CategoryController extends Controller
     {
         //
         $data = Category::all();
-        return view ('admin.category.create',['data' => $data]);
+        return view ('admin.course.create',['data' => $data]);
     }
 
     /**
@@ -60,18 +45,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $data= new Category();
-        $data->parent_id = $request->parent_id;
+        $data= new Course();
+        $data->user_id = $request->user_id;
+        $data->category_id = $request->category_id;
         $data->title = $request->title;
         $data->keywords = $request->keywords;
         $data->description = $request->description;
+        $data->detail = $request->detail;
+        $data->price = $request->price;
         $data->status = $request->status;
         if($request->hasFile('image'))
         {
             $data->image = $request->file('image')->store('images');
         }
         $data->save();
-        return redirect('admin/category');
+        return redirect('admin/course');
     }
 
     /**
@@ -80,11 +68,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category, $id)
+    public function show(Course $category, $id)
     {
         //
-        $data = Category::find($id);
-        return view ('admin.category.show',['data' => $data]);
+        $data = Course::find($id);
+        return view ('admin.course.show',['data' => $data]);
     }
 
     /**
@@ -93,12 +81,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category, $id)
+    public function edit(Course $course, $id)
     {
         //
-        $data = Category::find($id);
+        $data = Course::find($id);
         $datalist = Category::all();
-        return view ('admin.category.edit',
+        return view ('admin.course.edit',
         [
             'data' => $data,
             'datalist' => $datalist
@@ -109,42 +97,45 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category, $id)
+    public function update(Request $request, Course $course, $id)
     {
         //
-        $data = Category::find($id);
-        $data->parent_id = $request->parent_id;
+        $data = Course::find($id);
+        $data->user_id = $request->user_id;
+        $data->category_id = $request->category_id;
         $data->title = $request->title;
         $data->keywords = $request->keywords;
         $data->description = $request->description;
+        $data->detail = $request->detail;
+        $data->price = $request->price;
         $data->status = $request->status;
         if($request->hasFile('image'))
         {
             $data->image = $request->file('image')->store('images');
         }
         $data->save();
-        return redirect('admin/category');
+        return redirect('admin/course');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category, $id)
+    public function destroy(Course $course, $id)
     {
         //
-        $data = Category:: find($id);
+        $data = Course:: find($id);
         if($data->image && Storage::disk('public')->exists($data->image))
         {
             Storage::delete($data->image);
         }
         $data->delete();
-        return redirect('admin/category');
+        return redirect('admin/course');
 
     }
 }

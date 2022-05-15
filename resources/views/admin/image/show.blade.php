@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('title', 'Show Category : '.$data->title)
+@section('title', 'Show Course : '.$data->title)
 
 @section('content')
 
@@ -21,6 +21,10 @@
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
+                                    <th style="width: 100px">Category</th>
+                                    <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($data->category, $data->category->title) }}</td>
+                                </tr>
+                                <tr>
                                     <th style="width: 100px">Title</th>
                                     <td>{{$data->title}}</td>
                                 </tr>
@@ -37,8 +41,16 @@
                                     <td>{{$data->image}}</td>
                                 </tr>
                                 <tr>
+                                    <th style="width: 100px">Details</th>
+                                    <td>{{$data->detail}}</td>
+                                </tr>
+                                <tr>
                                     <th style="width: 100px">Status</th>
                                     <td>{{$data->status}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Price</th>
+                                    <td>{{$data->price}}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Created Date</th>
@@ -54,8 +66,8 @@
                 </div>
 
             </div>
-            <a href="{{route('admin.category.edit', ['id'=>$data->id])}}" ><button type="button" class="btn btn-lg btn-primary">Edit</button></a>
-            <a href="{{route('admin.category.destroy', ['id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-lg btn-danger">Delete</button></a>
+            <a href="{{route('admin.course.edit', ['id'=>$data->id])}}" ><button type="button" class="btn btn-lg btn-primary">Edit</button></a>
+            <a href="{{route('admin.course.destroy', ['id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-lg btn-danger">Delete</button></a>
         </div>
         
         <!-- /. PAGE INNER  -->

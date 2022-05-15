@@ -1,7 +1,9 @@
 @extends('layouts.adminbase')
 
-@section('title', 'Add Category')
-
+@section('title', 'Add Course')
+@section('head')
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+@endsection
 @section('content')
 
 <div id="page-wrapper">
@@ -9,16 +11,15 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    ADD CATEGORY
+                    ADD COURSE
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="{{route('admin.category.store')}}" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="{{route('admin.course.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
-                            <label>Parent Category</label>
-                            <select class="form-control select2" name="parent_id">
-                                <option value="0" selected="selected">Main Category</option>
+                            <label>Category</label>
+                            <select class="form-control select2" name="category_id">
                                 @foreach($data as $rs)
                                 <option value="{{ $rs->id }}">{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs, $rs->title) }} </option>
                                 @endforeach
@@ -28,19 +29,16 @@
                         <div class="form-group">
                             <label>Title</label>
                             <input class="form-control" name="title" type="text">
-                            <p class="help-block">Title</p>
                         </div>
 
                         <div class="form-group">
                             <label>Keywords</label>
                             <input class="form-control" name="keywords" type="text">
-                            <p class="help-block">keywords</p>
                         </div>
 
                         <div class="form-group">
                             <label>Description</label>
                             <input class="form-control" name="description" type="text">
-                            <p class="help-block">Description</p>
                         </div>
 <!-- /
                         <div class="form-group" enctype="multipart/form-data">
@@ -65,6 +63,27 @@
                                     <label class="custom-file-label" for="exampleInputFile">Choose Image File</label>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Details</label>
+                            <input class="form-control" id="detail" name="detail" type="text">
+                            <script>
+                                ClassicEditor
+                                    .create(document.querySelector('#detail'))
+                                    .then(editor => {
+                                        console.log(editor);
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+                            </script>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input class="form-control" name="price" type="number">
+                             <!-- <p class="help-block">Title</p> -->
                         </div>
 
                         <div class="form-group">

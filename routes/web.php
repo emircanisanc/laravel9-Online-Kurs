@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\AdminPanel\AdminContentController;
+use App\Http\Controllers\AdminPanel\AdminCourseController;
 use App\Http\Controllers\AdminPanel\CategoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
+use App\Http\Controllers\AdminPanel\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,5 +66,38 @@ Route::prefix('admin')->name('admin.')->group(function ()
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/show/{id}', 'show')->name('show');
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    });
+
+    //// ADMIN COURSE ROUTES ******************
+    Route::prefix('/course')->name('course.')->controller(AdminCourseController::class)->group(function ()
+    {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    });
+
+    //// ADMIN CONTENT ROUTES ******************
+    Route::prefix('/content')->name('content.')->controller(AdminContentController::class)->group(function ()
+    {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+    });
+
+    //// ADMIN CONTENT IMAGE GALLERY ROUTES ******************
+    Route::prefix('/image')->name('image.')->controller(ImageController::class)->group(function ()
+    {
+        Route::get('/{pid}', 'index')->name('index');
+        Route::get('/create/{pid}', 'create')->name('create');
+        Route::post('/store/{pid}', 'store')->name('store');
+        Route::get('/destroy/{pid}/{id}', 'destroy')->name('destroy');
     });
 });
