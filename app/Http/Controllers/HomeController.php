@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public static function maincategorylist()
+    {
+        return Category::where('parent_id', '=', 0)->with('children')->get();
+    }
+
     //
     public function index()
     {
@@ -24,12 +30,25 @@ class HomeController extends Controller
         return view('home.test');
     }
 
-    public function param($id)
+    public function course($id)
     {
-        echo "Parameter 1:", $id;
-        return view('home.test2',
+        $data = Course::find($id);
+        $images = DB::table('images')->where('content_id', $id)->get(); 
+        return view('home.course',
         [
-            'id' => $id
+            'data' => $data,
+            'images' => $images
+        ]);
+    }
+
+    public function categorycourses($id)
+    {
+        $category = Category::find($id);
+        $courselist = DB::table('courses')->where('category_id', $id)->get(); 
+        return view('home.categorycourses',
+        [
+            'category' => $category,
+            'courselist' => $courselist
         ]);
     }
 

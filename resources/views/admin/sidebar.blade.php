@@ -61,7 +61,17 @@
                 </ul>
             </li>
             <li>
-                <a href="/admin/courses"><i class="fa fa-anchor "></i> Courses</a>
+                <a href="#"><ion-icon name="document-outline"></ion-icon> Course <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+
+                    <li>
+                        <a href="{{route('admin.course.index')}}"><ion-icon name="copy-outline"></ion-icon> Courses </a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.course.create')}}"><ion-icon name="duplicate-outline"></ion-icon> Create Course</a>
+                    </li>
+
+                </ul>
             </li>
             <li>
                 <a href="/admin/comments"><ion-icon name="chatbox-ellipses-outline"></ion-icon> Comments</a>

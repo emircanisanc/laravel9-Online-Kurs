@@ -44,14 +44,14 @@ class AdminCourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         $data= new Course();
         $data->user_id = $request->user_id;
         $data->category_id = $request->category_id;
         $data->title = $request->title;
         $data->keywords = $request->keywords;
         $data->description = $request->description;
-        $data->detail = $request->detail;
+        $data->detail = $_POST['detail'];
         $data->price = $request->price;
         $data->status = $request->status;
         if($request->hasFile('image'))

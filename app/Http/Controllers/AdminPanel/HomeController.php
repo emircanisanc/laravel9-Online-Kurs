@@ -12,4 +12,18 @@ class HomeController extends Controller
     {
         return view('admin.index');
     }
+/*
+    public function setting()
+    {
+        $data = Setting::first();
+        if($data===null)
+        {
+            $data = new Setting();
+            $data->title = 'Project Title';
+            $data->save();
+            $data=Setting::first();
+        }
+        return view('admin.setting', ['data' => $data]);
+    }
+    */
 }

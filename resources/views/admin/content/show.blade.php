@@ -21,8 +21,8 @@
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
-                                    <th style="width: 100px">Category</th>
-                                    <td>{{$rs->course_id->title}}</td>
+                                    <th style="width: 100px">Course</th>
+                                    <td>{{\App\Models\Course:: find($data->course_id)->title}}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Title</th>
@@ -42,7 +42,7 @@
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Details</th>
-                                    <td>!! $data->detail !!</td>
+                                    <td>{!! $data->detail !!}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Status</th>
@@ -71,7 +71,8 @@
 
             </div>
             <a href="{{route('admin.content.edit', ['id'=>$data->id])}}" ><button type="button" class="btn btn-lg btn-primary">Edit</button></a>
-            <a href="{{route('admin.content.destroy', ['id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-lg btn-danger">Delete</button></a>
+            <a href="{{route('admin.image.index', ['pid'=>$data->id])}}" ><button type="button" class="btn btn-lg btn-success">Image Gallery</button></a>
+            <a href="{{route('admin.content.destroy', ['pid'=>$data->course_id, 'id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-lg btn-danger">Delete</button></a>
         </div>
         
         <!-- /. PAGE INNER  -->

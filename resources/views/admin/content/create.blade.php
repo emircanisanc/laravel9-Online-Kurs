@@ -19,9 +19,13 @@
 
                         <div class="form-group">
                             <label>Course</label>
-                            <select class="form-control select2" name="category_id">
-                                @foreach($data as $rs)
-                                <option value="{{ $rs->id }}">$rs->title </option>
+                            <select class="form-control select2" id="course_id" name="course_id">
+                                @foreach($courselist as $rs)
+                                    @if($data == $rs->id) //If default value and id in loop are same
+                                        <option value =  "{{ $rs->id }}" selected="selected">{{$rs->title}}</option>
+                                    @else
+                                        <option value="{{ $rs->id }}">{{$rs->title}} </option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -67,7 +71,7 @@
 
                         <div class="form-group">
                             <label>Details</label>
-                            <input class="form-control" id="detail" name="detail" type="text">
+                            <textarea class="form-control" id="detail" name="detail" type="text"></textarea> 
                             <script>
                                 ClassicEditor
                                     .create(document.querySelector('#detail'))

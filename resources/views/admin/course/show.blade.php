@@ -67,6 +67,7 @@
 
             </div>
             <a href="{{route('admin.course.edit', ['id'=>$data->id])}}" ><button type="button" class="btn btn-lg btn-primary">Edit</button></a>
+            <a href="{{route('admin.content.index', ['pid'=>$data->id])}}" ><button type="button" class="btn btn-lg btn-success">Show Contents</button></a>
             <a href="{{route('admin.course.destroy', ['id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-lg btn-danger">Delete</button></a>
         </div>
         

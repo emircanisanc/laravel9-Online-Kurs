@@ -42,7 +42,7 @@
                             <input class="form-control" name="description" type="text">
                             <p class="help-block">Description</p>
                         </div>
-<!-- /
+                        <!-- /
                         <div class="form-group" enctype="multipart/form-data">
                             <label class="control-label col-lg-4">Image</label>
                             <div class="">
@@ -56,7 +56,7 @@
                             </div>
                         </div>
 -->
-                        
+
                         <div class="form-group" enctype="multipart/form-data">
                             <label for="exampleInputFile">Image</label>
                             <div class="input-group">
@@ -68,11 +68,11 @@
                         </div>
 
                         <div class="form-group">
-                                    <label>Status</label>
-                                    <select class="form-control" name="status">
-                                                <option>True</option>
-                                                <option>False</option>
-                                            </select>
+                            <label>Status</label>
+                            <select class="form-control" name="status">
+                                <option>True</option>
+                                <option>False</option>
+                            </select>
                         </div>
 
                         <button type="submit" class="btn btn-info">Save</button>

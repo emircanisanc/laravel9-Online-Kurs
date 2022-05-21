@@ -1,0 +1,339 @@
+/*!
+Theme Name: edulab
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: edulab
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+edulab is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+*/
+
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Normalize
+# Typography
+# Elements
+# Forms
+# Navigation
+	## Links
+	## Menus
+# Accessibility
+# Alignments
+# Clearings
+# Widgets
+# Content
+	## Posts and pages
+	## Comments
+# Infinite scroll
+# Media
+	## Captions
+	## Galleries
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# Normalize
+--------------------------------------------------------------*/
+
+
+/* normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+
+
+/* Document
+	 ========================================================================== */
+
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+## Links
+--------------------------------------------------------------*/
+
+a {
+    color: royalblue;
+}
+
+a:visited {
+    color: purple;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: midnightblue;
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+a:hover,
+a:active {
+    outline: 0;
+}
+
+
+/*=======Global Css=================*/
+
+* {
+    outline: none;
+}
+
+.container {
+    max-width: 1170px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/*======Page Header=============*/
+
+.top-header {
+    /*background: #1c3961;*/
+}
+
+.top-header a {
+    /*text-decoration: none;*/
+    /*color: #fff;*/
+    /*font-family: 'Raleway', sans-serif;*/
+}
+
+.top-header .container {
+    display: flex;
+    flex: 1;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.top-header .container .top-header-left svg {
+    margin-right: 0.9rem;
+}
+
+.top-header-left {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.top-header-block {
+    margin-right: 4.5rem;
+}
+
+.top-header-right {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.top-header-right ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+.top-header-right li {
+    display: inline-block;
+}
+
+.social-block {
+    margin-right: 8.5rem;
+}
+
+.top-header-right .social-list li {
+    margin-right: 0.625em;
+    margin-left: 0.625em;
+}
+
+
+/*=================Menu Navigation===============*/
+
+.main-header .container {
+    display: flex;
+    flex: 1;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding-top: 1.375em;
+    padding-bottom: 1.375em;
+}
+
+.nav-desktop {
+    display: inline-block;
+}
+
+.nav-desktop li,
+.nav-desktop li a {
+    font-size: 1.8rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: #3a3a3a;
+}
+
+.nav-desktop li {
+    padding: 1.6rem;
+}
+
+.nav-desktop ul ul {
+    position: absolute;
+    display: none;
+    margin: 0;
+}
+
+.menu-list {
+    display: flex;
+}
+
+ul>li {
+    position: relative;
+}
+
+.nav-desktop .sub-menu {
+    top: 100%;
+    left: 0;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.sub-menu li:hover {
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.menu-list>li>.sub-menu::before {
+    position: absolute;
+    content: "";
+    border: 1px solid #1f4271;
+    top: 0;
+    width: 35%;
+    left: 3%;
+    cursor: pointer;
+}
+
+.sub-menu .sub-menu {
+    top: -1px;
+    left: 100%;
+}
+
+.menu-parent:hover>.sub-menu {
+    display: block;
+    z-index: 999;
+    width: 20rem;
+    padding-left: 0;
+    text-align: left;
+}
+
+#bar,
+#close {
+    display: none;
+}
+
+.menu-parent::after {
+    content: "";
+    border: solid #3a3a3a;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 10px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.menu-parent .menu-parent::after {
+    content: "";
+    border: solid #3a3a3a;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 10px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        max-width: 800px;
+    }
+    .top-header .top-header-left {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2em;
+    }
+    .top-header .top-header-left .top-header-block:last-child {
+        margin-right: 1em;
+    }
+    .top-header .top-header-right {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .top-header-right .social-block {
+        margin-right: 3em;
+    }
+    /*====navigation=====*/
+    .menu-list {
+        flex-direction: column;
+    }
+    .nav-desktop {
+        display: none;
+        width: 250px;
+    }
+    .nav-desktop ul ul {
+        position: static;
+    }
+    #bar {
+        display: inline-block;
+        font-size: 40px;
+        cursor: pointer;
+    }
+    #close {
+        display: none;
+        font-size: 40px;
+        cursor: pointer;
+    }
+    .menu-list>li>.sub-menu::before {
+        content: "";
+        border: none;
+    }
+    .menu-parent .menu-parent::after {
+        content: "";
+        border: solid #3a3a3a;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px;
+        margin-left: 10px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+    .menu-parent:hover::after,
+    .menu-parent .menu-parent:hover::after {
+        content: "";
+        border: none;
+        display: none;
+    }
+}

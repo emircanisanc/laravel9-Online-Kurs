@@ -44,7 +44,11 @@
                                 @foreach($data as $rs)
                                 <tr>
                                     <td>{{$rs->id}}</td>
-                                    <td>{{$rs->course_id}}</td>
+                                    <td>
+                                        @if($rs->course_id)
+                                        {{\App\Models\Course:: find($rs->course_id)->title}}
+                                        @endif
+                                    </td>
                                     <td>{{$rs->title}}</td>
                                     <td>{{$rs->keywords}}</td>
                                     <td>{{$rs->description}}</td>
@@ -59,12 +63,12 @@
                                             <img src="{{asset('assets')}}/adminassets/img/gallery.png">
                                         </a>
                                     </td>
-                                    <td>{{$rs->detail}}</td>
+                                    <td>{!! $rs->detail !!}</td>
                                     <td>{{$rs->file}}</td>
                                     <td>{{$rs->videolink}}</td>
                                     <td>{{$rs->status}}</td>
                                     <td><a href="{{route('admin.content.edit', ['id'=>$rs->id])}}"><button type="button" class="btn btn-info">Edit</button></a></td>
-                                    <td><a href="{{route('admin.content.destroy', ['id'=>$rs->id])}}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                                    <td><a href="{{route('admin.content.destroy', ['pid'=>$pid, 'id'=>$rs->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-danger">Delete</button></a>
                                     <td><a href="{{route('admin.content.show', ['id'=>$rs->id])}}"><button type="button" class="btn btn-success">Show</button></a></td>
                                 </tr>
                                 @endforeach
@@ -73,14 +77,11 @@
                     </div>
                 </div>
             </div>
-            <!-- End  Kitchen Sink -->
+            <td><a href="{{route('admin.content.create', ['pid'=>$pid])}}"><button type="button" class="btn btn-lg btn-success">Create Content</button></a></td>
+            <!-- End Table Sink -->
         </div>
-
-
     </div>
     <!-- /. PAGE INNER  -->
-
-
 
 </div>
 

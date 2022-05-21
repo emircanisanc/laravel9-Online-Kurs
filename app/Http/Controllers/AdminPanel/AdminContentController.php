@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Image;
 
@@ -17,11 +18,14 @@ class AdminContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($pid)
     {
         //
-        $data = Content::all();
-        return view ('admin.content.index',['data' => $data]);
+        $data = DB::table('contents')->where('course_id', $pid)->get(); 
+        return view ('admin.content.index',[
+            'data' => $data,
+            'pid' => $pid
+        ]);
     }
 
     /**
@@ -29,11 +33,16 @@ class AdminContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($pid)
     {
         //
-        $data = Course::all();
-        return view ('admin.content.create',['data' => $data]);
+        
+        $courselist = Course::all();
+        return view ('admin.content.create',[
+            'data' => $pid,
+            'courselist' => $courselist
+        ]);
+        
     }
 
     /**
@@ -44,23 +53,22 @@ class AdminContentController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $data= new Content();
         $data->user_id = $request->user_id;
-        $data->course_id = $request->course_id;
+        $data->course_id = $_POST['course_id'];
         $data->title = $request->title;
         $data->keywords = $request->keywords;
         $data->description = $request->description;
-        $data->detail = $request->detail;
+        $data->detail = $_POST['detail'];
         $data->file = $request->file;
         $data->videolink = $request->videolink;
-        $data->status = $request->status;
+        $data->status = $_POST['status'];
         if($request->hasFile('image'))
         {
             $data->image = $request->file('image')->store('images');
         }
         $data->save();
-        return redirect('admin/content');
+        return redirect()->route('admin.content.index', ['pid'=>$_POST['course_id']]);
     }
 
     /**
@@ -90,7 +98,7 @@ class AdminContentController extends Controller
         return view ('admin.content.edit',
         [
             'data' => $data,
-            'datalist' => $datalist
+            'courselist' => $datalist
         ]);
     }
 
@@ -106,20 +114,20 @@ class AdminContentController extends Controller
         //
         $data = Content::find($id);
         $data->user_id = $request->user_id;
-        $data->course_id = $request->course_id;
+        $data->course_id = $_POST['course_id'];
         $data->title = $request->title;
         $data->keywords = $request->keywords;
         $data->description = $request->description;
-        $data->detail = $request->detail;
+        $data->detail = $_POST['detail'];
         $data->file = $request->file;
         $data->videolink = $request->videolink;
-        $data->status = $request->status;
+        $data->status = $_POST['status'];
         if($request->hasFile('image'))
         {
             $data->image = $request->file('image')->store('images');
         }
         $data->save();
-        return redirect('admin/content');
+        return redirect('admin.content.index', ['id' => $data->course_id]);
     }
 
     /**
@@ -128,7 +136,7 @@ class AdminContentController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course, $id)
+    public function destroy($pid, $id)
     {
         //
         $data = Content:: find($id);
@@ -137,7 +145,7 @@ class AdminContentController extends Controller
             Storage::delete($data->image);
         }
         $data->delete();
-        return redirect('admin/content');
+        return redirect()->route('admin.content.index', ['pid'=>$pid]);
 
     }
 }
