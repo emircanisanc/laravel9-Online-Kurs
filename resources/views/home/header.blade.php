@@ -8,11 +8,11 @@
               <div class="mu-header-top-left">
                 <div class="mu-top-email">
                   <i class="fa fa-envelope"></i>
-                  <span>info@markups.io</span>
+                  <span>{{$setting->email}}</span>
                 </div>
                 <div class="mu-top-phone">
                   <i class="fa fa-phone"></i>
-                  <span>(568) 986 652</span>
+                  <span>{{$setting->phone}}</span>
                 </div>
               </div>
             </div>
@@ -20,11 +20,21 @@
               <div class="mu-header-top-right">
                 <nav>
                   <ul class="mu-top-social-nav">
-                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                    <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                    <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
-                    <li><a href="#"><span class="fa fa-youtube"></span></a></li>
+                    <li><a href="{{$setting->facebook}}"><span class="fa fa-facebook"></span></a></li>
+                    <li><a href="{{$setting->twitter}}"><span class="fa fa-twitter"></span></a></li>
+                    <li><a href="{{$setting->instagram}}"><span class="fa fa-instagram"></span></a></li>
+                    <li><a href="{{$setting->youtube}}"><span class="fa fa-youtube"></span></a></li>
+                    @auth
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} <span class="fa fa-angle-down"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="blog-single.html">Blog Single</a></li>
+                        <li><a href="/logoutuser">Logout</a></li>
+                      </ul>
+                    </li>
+                    @else
+                    <li><a href="/loginuser">Login</a>/<a href="{{route('registeruser')}}">Join</a></li>
+                    @endauth
                   </ul>
                 </nav>
               </div>

@@ -32,6 +32,7 @@
                             <div class="mu-course-container mu-course-details">
                                 <div class="row">
                                     <div class="col-md-12">
+                                        @include('home.messages')
                                         <div class="mu-latest-course-single">
                                             <figure class="mu-latest-course-img">
                                                 <section id="mu-slider">
@@ -42,36 +43,53 @@
                                                             </figure>
                                                         </div>
                                                     </div>
-                                                    @foreach($images as $image)
+                                                    @foreach($data->contents as $content)
+                                                    @if ($content->image)
                                                     <div class="mu-slider-single">
                                                         <div class="mu-slider-img">
                                                             <figure>
-                                                                @if ($image->image)
-                                                                <img src="{{Storage::url($image->image)}}" alt="img">
-                                                                @endif
+                                                                <img src="{{Storage::url($content->image)}}" alt="img">
                                                             </figure>
                                                         </div>
                                                     </div>
+                                                    @endif
+                                                        @foreach($content->images as $galleryPhoto)
+                                                        @if ($content->image)
+                                                            <div class="mu-slider-single">
+                                                                <div class="mu-slider-img">
+                                                                    <figure>
+                                                                        <img src="{{Storage::url($galleryPhoto->image)}}" alt="img">
+                                                                    </figure>
+                                                                </div>
+                                                            </div>
+                                                            @endif
+                                                        @endforeach
                                                     @endforeach
+
                                                 </section>
                                                 <figcaption class="mu-latest-course-imgcaption">
-                                                    <a href="#">{{\App\Models\Category:: find($data->category_id)->title}}</a>
+                                                    <a href="{{route('categorycourses', ['id'=>$data->category_id, 'slug'=>$data->category->title])}}">{{$data->category->title}}</a>
                                                 </figcaption>
                                             </figure>
+                                            @php
+                                            $average = $data->comments->average('rate');
+                                            @endphp
                                             <div class="mu-latest-course-single-content">
-                                                <h2><a href="#">{{$data->title}}</a></h2>
+                                                <h2>{{$data->title}}</h2>
                                                 <h4>Course Information</h4>
                                                 <ul>
                                                     <li> <span>Course Price</span> <span>${{$data->price}}</span></li>
+                                                    <li> <span>Course Rate</span> <span>{{number_format($average, 1)}}</span></li>
                                                     <li> <span>Place</span> <span>California,USA</span></li>
                                                     <li> <span>Total Students</span> <span>800+</span></li>
                                                     <li> <span>Course Duration</span> <span>4 Weeks</span></li>
                                                     <li> <span>Course Start</span> <span>July 25, 2016</span></li>
                                                 </ul>
-                                                <h4>Description</h4>
+                                                <h3>Description</h3>
                                                 <p>{{$data->description}}</p>
+                                                <h3>Details</h3>
                                                 <blockquote>
-                                                    <p>{{$data->detail}}</p>
+                                                    <p>{!! $data->detail !!}</p>
                                                 </blockquote>
                                                 <h4>Course Outline</h4>
                                                 <div class="table-responsive">
@@ -85,42 +103,14 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            @foreach($data->contents as $content)
                                                             <tr>
-                                                                <td> 1. Topic 1 </td>
+                                                                <td> 1. {{$content->title}} </td>
                                                                 <td> 15:30 </td>
                                                                 <td> 13:80 </td>
                                                                 <td> Successful </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td> 2. Topic 2 </td>
-                                                                <td> 15:30 </td>
-                                                                <td> 13:80 </td>
-                                                                <td> Successful </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> 3. Topic 3 </td>
-                                                                <td> 15:30 </td>
-                                                                <td> - </td>
-                                                                <td> Successful </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> 4. Topic 4 </td>
-                                                                <td> 15:30 </td>
-                                                                <td> 13:80 </td>
-                                                                <td> Successful </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> 5. Topic 5 </td>
-                                                                <td> 15:30 </td>
-                                                                <td> - </td>
-                                                                <td> Waiting </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> 6. Topic 6 </td>
-                                                                <td> 15:30 </td>
-                                                                <td> 13:80 </td>
-                                                                <td> - </td>
-                                                            </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -137,104 +127,157 @@
                                         <h3>Related Courses</h3>
                                         <div class="mu-related-item-area">
                                             <div id="mu-related-item-slide">
+                                                @foreach($data->category->courses as $relatedcourse)
+                                                @if($relatedcourse->id != $data->id)
                                                 <div class="col-md-6">
                                                     <div class="mu-latest-course-single">
                                                         <figure class="mu-latest-course-img">
-                                                            <a href="#"><img alt="img" src="assets/img/courses/1.jpg"></a>
+                                                            <a href="{{route('course',['id'=>$relatedcourse->id])}}"><img alt="img" src="{{Storage::url($relatedcourse->image)}}" width="350" height="300"></a>
                                                             <figcaption class="mu-latest-course-imgcaption">
-                                                                <a href="#">Drawing</a>
-                                                                <span><i class="fa fa-clock-o"></i>90Days</span>
+                                                                <a href="{{route('categorycourses', ['id'=>$relatedcourse->category_id, 'slug'=>$relatedcourse->category->title])}}">{{$relatedcourse->category->title}}</a>
+                                                                @php
+                                                                $average = $relatedcourse->comments->average('rate');
+                                                                @endphp
+                                                                <span><i class="fa fa-clock-o"></i>Rate: {{number_format($average, 1)}} ({{$relatedcourse->comments->count('id')}})</span>
                                                             </figcaption>
                                                         </figure>
                                                         <div class="mu-latest-course-single-content">
-                                                            <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore, dicta obcaecati architecto quidem ullam quia.</p>
+                                                            <h4><a href="{{route('course',['id'=>$relatedcourse->id])}}">{{$relatedcourse->title}}</a></h4>
+                                                            <p>{{$relatedcourse->keywords}}</p>
                                                             <div class="mu-latest-course-single-contbottom">
-                                                                <a href="#" class="mu-course-details">Details</a>
-                                                                <span href="#" class="mu-course-price">$165.00</span>
+                                                                <a href="{{route('course',['id'=>$relatedcourse->id])}}" class="mu-course-details">Details</a>
+                                                                <span href="#" class="mu-course-price">${{$relatedcourse->price}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="mu-latest-course-single">
-                                                        <figure class="mu-latest-course-img">
-                                                            <a href="#"><img alt="img" src="assets/img/courses/2.jpg"></a>
-                                                            <figcaption class="mu-latest-course-imgcaption">
-                                                                <a href="#">Drawing</a>
-                                                                <span><i class="fa fa-clock-o"></i>90Days</span>
-                                                            </figcaption>
-                                                        </figure>
-                                                        <div class="mu-latest-course-single-content">
-                                                            <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore, dicta obcaecati architecto quidem ullam quia.</p>
-                                                            <div class="mu-latest-course-single-contbottom">
-                                                                <a href="#" class="mu-course-details">Details</a>
-                                                                <span href="#" class="mu-course-price">$165.00</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="mu-latest-course-single">
-                                                        <figure class="mu-latest-course-img">
-                                                            <a href="#"><img alt="img" src="assets/img/courses/3.jpg"></a>
-                                                            <figcaption class="mu-latest-course-imgcaption">
-                                                                <a href="#">Drawing</a>
-                                                                <span><i class="fa fa-clock-o"></i>90Days</span>
-                                                            </figcaption>
-                                                        </figure>
-                                                        <div class="mu-latest-course-single-content">
-                                                            <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore, dicta obcaecati architecto quidem ullam quia.</p>
-                                                            <div class="mu-latest-course-single-contbottom">
-                                                                <a href="#" class="mu-course-details">Details</a>
-                                                                <span href="#" class="mu-course-price">$165.00</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="mu-latest-course-single">
-                                                        <figure class="mu-latest-course-img">
-                                                            <a href="#"><img alt="img" src="assets/img/courses/1.jpg"></a>
-                                                            <figcaption class="mu-latest-course-imgcaption">
-                                                                <a href="#">Drawing</a>
-                                                                <span><i class="fa fa-clock-o"></i>90Days</span>
-                                                            </figcaption>
-                                                        </figure>
-                                                        <div class="mu-latest-course-single-content">
-                                                            <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore, dicta obcaecati architecto quidem ullam quia.</p>
-                                                            <div class="mu-latest-course-single-contbottom">
-                                                                <a href="#" class="mu-course-details">Details</a>
-                                                                <span href="#" class="mu-course-price">$165.00</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @endif
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- end start related course item -->
+                            <!-- start blog comment -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mu-comments-area">
+                                        <h3>{{$data->comments->count('id')}} Comments</h3>
+                                        <div class="comments">
+                                            <ul class="commentlist">
+                                                @foreach($commentlist as $rs)
+                                                <li>
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <img alt="img" src="assets/img/testimonial-1.png" class="media-object news-img">
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h3 class="author-name">{{$rs->user->name}}</h3>
+                                                            <span class="comments-date">{{$rs->created_at}}</span>
+                                                            <h5>Rate : {{$rs->rate}}</h5>
+                                                            <h4>{{$rs->subject}}</h4>
+                                                            <p>{{$rs->review}}</p>
+                                                            <a class="reply-btn" href="#">Reply <span class="fa fa-long-arrow-right"></span></a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                            <!-- comments pagination -->
+                                            <nav>
+                                                <ul class="pagination comments-pagination">
+                                                    <li>
+                                                        <a aria-label="Previous" href="#">
+                                                            <span class="fa fa-long-arrow-left"></span>
+                                                        </a>
+                                                    </li>
+                                                    <li><a href="#">1</a></li>
+                                                    <li><a href="#">2</a></li>
+                                                    <li><a href="#">3</a></li>
+                                                    <li><a href="#">4</a></li>
+                                                    <li><a href="#">5</a></li>
+                                                    <li>
+                                                        <a aria-label="Next" href="#">
+                                                            <span class="fa fa-long-arrow-right"></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end blog comment -->
+                            <!-- start respond form -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="respond">
+                                        <h3 class="reply-title">Leave a Comment</h3>
+                                        <form id="commentform" action="{{route('storecomment')}}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input class="input" type="hidden" name="course_id" value="{{$data->id}}" />
+                                            <p class="comment-notes">
+                                                Required fields are marked <span class="required">*</span>
+                                            </p>
+                                            <p class="comment-form-author">
+                                                <label for="subject">Subject <span class="required">*</span></label>
+                                                <input type="text" required="required" size="30" value="" name="subject">
+                                            </p>
+                                            <p class="comment-form-comment">
+                                                <label for="review">Comment<span class="required">*</span></label>
+                                                <textarea required="required" aria-required="true" rows="8" cols="45" name="review"></textarea>
+                                            </p>
+                                            <p class="comment-form-radio">
+                                                <label for="subject">Your Rating <span class="required">*</span></label>
+                                                <label class="container">
+                                                    <input type="radio" name="rate" value="1">
+                                                    <span class="checkmark">One</span>
+                                                </label>
+                                                <label class="container">
+                                                    <input type="radio" name="rate" value="2">
+                                                    <span class="checkmark">Two</span>
+                                                </label>
+                                                <label class="container">
+                                                    <input type="radio" name="rate" value="3">
+                                                    <span class="checkmark">Three</span>
+                                                </label>
+                                                <label class="container">
+                                                    <input type="radio" name="rate" value="4">
+                                                    <span class="checkmark">Four</span>
+                                                </label>
+                                                <label class="container">
+                                                    <input type="radio" checked="checked" name="rate" value="5">
+                                                    <span class="checkmark">Five</span>
+                                                </label>
+                                            </p>
+                                            @auth
+                                            <p class="form-submit">
+                                                <input type="submit" value="Post Comment" class="mu-post-btn" name="submit">
+                                            </p>
+                                            @else
+                                            <a href="/login" class="mu-post-btn">For Submit Your Review, Please Login</a>
+                                            @endauth
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end respond form -->
                         </div>
                         <div class="col-md-3">
                             <!-- start sidebar -->
                             <aside class="mu-sidebar">
                                 <!-- start single sidebar -->
+                                @if(count($data->category->children))
                                 <div class="mu-single-sidebar">
-                                    <h3>Categories</h3>
+                                    <h3>SubCategories</h3>
                                     <ul class="mu-sidebar-catg">
-                                        <li><a href="#">Web Design</a></li>
-                                        <li><a href="">Web Development</a></li>
-                                        <li><a href="">Math</a></li>
-                                        <li><a href="">Physics</a></li>
-                                        <li><a href="">Camestry</a></li>
-                                        <li><a href="">English</a></li>
+                                        @foreach($data->category->children as $childcategory)
+                                        <li><a href="{{route('categorycourses', ['id'=>$childcategory->id, 'slug'=>$childcategory->title])}}">{{$childcategory->title}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
+                                @endif
                                 <!-- end single sidebar -->
                                 <!-- start single sidebar -->
                                 <div class="mu-single-sidebar">
@@ -293,6 +336,7 @@
                                 <!-- end single sidebar -->
                             </aside>
                             <!-- / end sidebar -->
+
                         </div>
                     </div>
                 </div>
@@ -305,6 +349,3 @@
 
 <!-- End from blog -->
 @endsection
-
-
-

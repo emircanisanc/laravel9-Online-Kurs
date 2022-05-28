@@ -1,7 +1,9 @@
 @extends('layouts.adminbase')
 
 @section('title', 'Edit Course : '.$data->title)
-
+@section('head')
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+@endsection
 @section('content')
 
 <div id="page-wrapper">
@@ -51,7 +53,17 @@
 
                         <div class="form-group">
                             <label>Details</label>
-                            <input class="form-control" name="detail" value="{{$data->detail}}" type="text">
+                            <input class="form-control" id="detail" name="detail" value="{!! $data->detail !!}" type="text">
+                            <script>
+                                ClassicEditor
+                                    .create(document.querySelector('#detail'))
+                                    .then(editor => {
+                                        console.log(editor);
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+                            </script>
                         </div>
 
                         <div class="form-group">

@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        if(!Schema::hasTable('categories')){
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('parent_id');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->string('status', length:6);
             $table->timestamps();
         });
+        }
     }
 
     /**

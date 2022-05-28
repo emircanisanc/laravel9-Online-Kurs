@@ -8,6 +8,7 @@
 
 <div id="page-wrapper">
     <div id="page-inner">
+        <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -112,6 +113,7 @@
                     </form>
                 </div>
             </div>
+        </div>
         </div>
         <!-- /. PAGE INNER  -->
     </div>

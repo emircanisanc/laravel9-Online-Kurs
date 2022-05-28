@@ -8,9 +8,9 @@
     <div id="page-inner">
 
         <div class="col-md-6 col-sm-6 col-xs-12">
-            
+
             <div class="panel panel-info">
-                
+
 
                 <div class="panel-heading">
                     DETAILS : {{$data->title}}
@@ -34,7 +34,11 @@
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Image</th>
-                                    <td>{{$data->image}}</td>
+                                    <td>
+                                        @if ($data->image)
+                                        <img src="{{Storage::url($data->image)}}" style="height: 200px">
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Status</th>
@@ -54,10 +58,10 @@
                 </div>
 
             </div>
-            <a href="{{route('admin.category.edit', ['id'=>$data->id])}}" ><button type="button" class="btn btn-lg btn-primary">Edit</button></a>
+            <a href="{{route('admin.category.edit', ['id'=>$data->id])}}"><button type="button" class="btn btn-lg btn-primary">Edit</button></a>
             <a href="{{route('admin.category.destroy', ['id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-lg btn-danger">Delete</button></a>
         </div>
-        
+
         <!-- /. PAGE INNER  -->
     </div>
 

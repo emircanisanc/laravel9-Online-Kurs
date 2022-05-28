@@ -1,7 +1,9 @@
 @extends('layouts.adminbase')
 
-@section('title', 'Add Course')
-
+@section('title', 'Edit Course : '.$data->title)
+@section('head')
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+@endsection
 @section('content')
 
 <div id="page-wrapper">
@@ -9,16 +11,16 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    ADD COURSE
+                    EDIT COURSE: {{$data->title}}
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="{{route('admin.course.store')}}" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="{{route('admin.course.update', ['id'=>$data->id])}}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
                             <label>Category</label>
                             <select class="form-control select2" name="category_id">
-                                @foreach($data as $rs)
+                                @foreach($datalist as $rs)
                                 <option value="{{ $rs->id }}">{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs, $rs->title) }} </option>
                                 @endforeach
                             </select>
@@ -26,33 +28,19 @@
 
                         <div class="form-group">
                             <label>Title</label>
-                            <input class="form-control" name="title" type="text">
+                            <input class="form-control" name="title" value="{{$data->title}}" type="text">
                         </div>
 
                         <div class="form-group">
                             <label>Keywords</label>
-                            <input class="form-control" name="keywords" type="text">
+                            <input class="form-control" name="keywords" value="{{$data->keywords}}" type="text">
                         </div>
 
                         <div class="form-group">
                             <label>Description</label>
-                            <input class="form-control" name="description" type="text">
+                            <input class="form-control" name="description" value="{{$data->description}}" type="text">
                         </div>
-<!-- /
-                        <div class="form-group" enctype="multipart/form-data">
-                            <label class="control-label col-lg-4">Image</label>
-                            <div class="">
-                                <div class="fileupload fileupload-new" data-provides="fileupload">
-                                    <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
-                                    <div>
-                                        <span class="btn btn-file btn-success"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="image"></span>
-                                        <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
--->
-                        
+
                         <div class="form-group" enctype="multipart/form-data">
                             <label for="exampleInputFile">Image</label>
                             <div class="input-group">
@@ -65,24 +53,34 @@
 
                         <div class="form-group">
                             <label>Details</label>
-                            <input class="form-control" name="detail" type="text">
+                            <input class="form-control" id="detail" name="detail" value="{!! $data->detail !!}" type="text">
+                            <script>
+                                ClassicEditor
+                                    .create(document.querySelector('#detail'))
+                                    .then(editor => {
+                                        console.log(editor);
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+                            </script>
                         </div>
 
                         <div class="form-group">
                             <label>Price</label>
-                            <input class="form-control" name="price" type="number">
-                             <!-- <p class="help-block">Title</p> -->
+                            <input class="form-control" name="price" value="{{$data->price}}" type="number">
                         </div>
 
                         <div class="form-group">
                                     <label>Status</label>
-                                    <select class="form-control" name="status">
+                                    <select class="form-control" name="status" >
+                                                <option selected>{{$data->status}}</option>
                                                 <option>True</option>
                                                 <option>False</option>
                                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-info">Save</button>
+                        <button type="submit" class="btn btn-info">Update</button>
 
                     </form>
                 </div>

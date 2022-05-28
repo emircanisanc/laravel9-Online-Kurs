@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('title', 'Show Course : '.$data->title)
+@section('title', 'Show Content : '.$data->title)
 
 @section('content')
 
@@ -21,8 +21,8 @@
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
-                                    <th style="width: 100px">Category</th>
-                                    <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($data->category, $data->category->title) }}</td>
+                                    <th style="width: 100px">Course</th>
+                                    <td>{{\App\Models\Course:: find($data->course_id)->title}}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Title</th>
@@ -42,15 +42,19 @@
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Details</th>
-                                    <td>{{$data->detail}}</td>
+                                    <td>{!! $data->detail !!}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Status</th>
                                     <td>{{$data->status}}</td>
                                 </tr>
                                 <tr>
-                                    <th style="width: 100px">Price</th>
-                                    <td>{{$data->price}}</td>
+                                    <th style="width: 100px">File</th>
+                                    <td>{{$data->file}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Videolink</th>
+                                    <td>{{$data->videolink}}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Created Date</th>
@@ -66,8 +70,9 @@
                 </div>
 
             </div>
-            <a href="{{route('admin.course.edit', ['id'=>$data->id])}}" ><button type="button" class="btn btn-lg btn-primary">Edit</button></a>
-            <a href="{{route('admin.course.destroy', ['id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-lg btn-danger">Delete</button></a>
+            <a href="{{route('admin.content.edit', ['id'=>$data->id])}}" ><button type="button" class="btn btn-lg btn-primary">Edit</button></a>
+            <a href="{{route('admin.image.index', ['pid'=>$data->id])}}" ><button type="button" class="btn btn-lg btn-success">Image Gallery</button></a>
+            <a href="{{route('admin.content.destroy', ['pid'=>$data->course_id, 'id'=>$data->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-lg btn-danger">Delete</button></a>
         </div>
         
         <!-- /. PAGE INNER  -->

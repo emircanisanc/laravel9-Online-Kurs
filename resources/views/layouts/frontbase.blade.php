@@ -5,7 +5,12 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<title>@yield("title")</title>
+	<meta name="description" content="@yield('description')">
+	<meta name="keywords" content="@yield('keywords')">
+	<meta name="author" content="@yield('Emircan ISANC')">
+	<link rel="icon" type="image/x-icon" href="@yield('icon')">
 
 	<!-- EDULAB START-->
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/edulabassets/css/inner-page-style-edulab.css">
@@ -47,25 +52,29 @@
 	@yield('foot')
 
 </body>
-<!-- Bootstrap -->
-<link href="{{asset('assets')}}/assets/css/bootstrap.css" rel="stylesheet">
 <!-- jQuery library -->
 <script src="{{asset('assets')}}/assets/js/jquery.min.js"></script>
-<!-- Slick slider -->
-<script type="text/javascript" src="{{asset('assets')}}/assets/js/slick.js"></script>
-<!-- Counter -->
-<script type="text/javascript" src="{{asset('assets')}}/assets/js/waypoints.js"></script>
+<script src="{{asset('assets')}}/assets/js/bootstrap.js"></script>
 <script type="text/javascript" src="{{asset('assets')}}/assets/js/jquery.counterup.js"></script>
 <!-- Mixit slider -->
 <script type="text/javascript" src="{{asset('assets')}}/assets/js/jquery.mixitup.js"></script>
 <!-- Add fancyBox -->
 <script type="text/javascript" src="{{asset('assets')}}/assets/js/jquery.fancybox.pack.js"></script>
+
+<!-- Bootstrap -->
+<link href="{{asset('assets')}}/assets/css/bootstrap.css" rel="stylesheet">
+
+<!-- Slick slider -->
+<script type="text/javascript" src="{{asset('assets')}}/assets/js/slick.js"></script>
+<!-- Counter -->
+<script type="text/javascript" src="{{asset('assets')}}/assets/js/waypoints.js"></script>
+
 <script type="text/javascript" src="{{asset('assets')}}/assets/js/sidebar.js"></script>
 <!-- Custom js -->
 <script src="{{asset('assets')}}/assets/js/custom.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{{asset('assets')}}/assets/js/bootstrap.js"></script>
-<script src="{{asset('assets')}}/assets/js/slider.js"></script>
+
+
 
 
 

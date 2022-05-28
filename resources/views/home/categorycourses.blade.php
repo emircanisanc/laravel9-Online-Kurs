@@ -35,22 +35,26 @@
                                     <div class="col-md-6 col-sm-6">
                                         <div class="mu-latest-course-single">
                                             <figure class="mu-latest-course-img">
-                                                <a href="#"><img src="{{Storage::url($rs->image)}}"width="350" height="300" alt="img"></a>
+                                                <a href="{{route('course',['id'=>$rs->id])}}"><img src="{{Storage::url($rs->image)}}" width="350" height="300" alt="img"></a>
                                                 <figcaption class="mu-latest-course-imgcaption">
-                                                    {{$category->title}}
+                                                <a href="{{route('categorycourses', ['id'=>$category->id, 'slug'=>$category->title])}}">{{$category->title}}</a>
                                                 </figcaption>
                                             </figure>
                                             <div class="mu-latest-course-single-content">
                                                 <h4><a href="{{route('course',['id'=>$rs->id])}}">{{$rs->title}}</a></h4>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore, dicta obcaecati architecto quidem ullam quia.</p>
+                                                <p>{{$rs->keywords}}</p>
                                                 <div class="mu-latest-course-single-contbottom">
-                                                    <a class="mu-course-details" href="#">Details</a>
-                                                    <span class="mu-course-price" href="#">$165.00</span>
+                                                    <a class="mu-course-details" href="{{route('course',['id'=>$rs->id])}}">Details</a>
+                                                    <span class="mu-course-price" href="#">${{$rs->price}}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     @endforeach
+                                    
+                                    @if(count($category->children))
+                                    @include('home.categorycoursestree',['children' => $category->children])
+                                    @endif 
                                 </div>
                             </div>
                             <!-- end course content container -->
@@ -83,14 +87,13 @@
                             <aside class="mu-sidebar">
                                 <!-- start single sidebar -->
                                 <div class="mu-single-sidebar">
-                                    <h3>Categories</h3>
+                                    <h3>SubCategories</h3>
                                     <ul class="mu-sidebar-catg">
-                                        <li><a href="#">Web Design</a></li>
-                                        <li><a href="">Web Development</a></li>
-                                        <li><a href="">Math</a></li>
-                                        <li><a href="">Physics</a></li>
-                                        <li><a href="">Camestry</a></li>
-                                        <li><a href="">English</a></li>
+                                    @if(count($category->children))
+                                        @foreach($category->children as $childcategory)
+                                        <li><a href="{{route('categorycourses', ['id'=>$childcategory->id, 'slug'=>$childcategory->title])}}">{{$childcategory->title}}</a></li>
+                                        @endforeach
+                                    @endif
                                     </ul>
                                 </div>
                                 <!-- end single sidebar -->
@@ -132,19 +135,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- end single sidebar -->
-                                <!-- start single sidebar -->
-                                <div class="mu-single-sidebar">
-                                    <h3>Archives</h3>
-                                    <ul class="mu-sidebar-catg mu-sidebar-archives">
-                                        <li><a href="#">May <span>(25)</span></a></li>
-                                        <li><a href="">June <span>(35)</span></a></li>
-                                        <li><a href="">July <span>(20)</span></a></li>
-                                        <li><a href="">August <span>(125)</span></a></li>
-                                        <li><a href="">September <span>(45)</span></a></li>
-                                        <li><a href="">October <span>(85)</span></a></li>
-                                    </ul>
                                 </div>
                                 <!-- end single sidebar -->
                                 <!-- start single sidebar -->

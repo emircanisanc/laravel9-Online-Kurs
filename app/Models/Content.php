@@ -10,6 +10,10 @@ class Content extends Model
     use HasFactory;
     public function course()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Course::class, 'course_id');
+    }
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 }

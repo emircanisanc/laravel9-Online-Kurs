@@ -11,11 +11,11 @@
       </figure>
     </div>
     <div class="mu-slider-content">
-      <h4>{{$rs->title}}</h4>
+      <h1>{{$rs->title}}</h1>
       <span></span>
-      <h2>{{$rs->keywords}}</h2>
+      <h4>{{$rs->keywords}}</h4>
       <p>{{$rs->description}}</p>
-      <a href="#" class="mu-read-more-btn">Read More</a>
+      <a href="{{route('categorycourses', ['id'=>$rs->id, 'slug'=>$rs->title])}}" class="mu-read-more-btn">Find Courses</a>
     </div>
   </div>
   @endforeach

@@ -20,6 +20,7 @@
                         <div class="form-group">
                             <label>Category</label>
                             <select class="form-control select2" name="category_id">
+                            <option value="{{ $data->category_id }}" selected>{{$data->category->title}}</option>
                                 @foreach($datalist as $rs)
                                 <option value="{{ $rs->id }}">{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs, $rs->title) }} </option>
                                 @endforeach
@@ -53,7 +54,7 @@
 
                         <div class="form-group">
                             <label>Details</label>
-                            <input class="form-control" id="detail" name="detail" value="{!! $data->detail !!}" type="text">
+                            <textarea class="form-control" id="detail" name="detail" type="text">{!! $data->detail !!}</textarea>
                             <script>
                                 ClassicEditor
                                     .create(document.querySelector('#detail'))
@@ -72,12 +73,12 @@
                         </div>
 
                         <div class="form-group">
-                                    <label>Status</label>
-                                    <select class="form-control" name="status" >
-                                                <option selected>{{$data->status}}</option>
-                                                <option>True</option>
-                                                <option>False</option>
-                                            </select>
+                            <label>Status</label>
+                            <select class="form-control" name="status">
+                                <option selected>{{$data->status}}</option>
+                                <option>True</option>
+                                <option>False</option>
+                            </select>
                         </div>
 
                         <button type="submit" class="btn btn-info">Update</button>

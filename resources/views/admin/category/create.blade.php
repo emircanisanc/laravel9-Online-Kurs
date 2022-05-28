@@ -28,19 +28,16 @@
                         <div class="form-group">
                             <label>Title</label>
                             <input class="form-control" name="title" type="text">
-                            <p class="help-block">Title</p>
                         </div>
 
                         <div class="form-group">
                             <label>Keywords</label>
                             <input class="form-control" name="keywords" type="text">
-                            <p class="help-block">keywords</p>
                         </div>
 
                         <div class="form-group">
                             <label>Description</label>
                             <input class="form-control" name="description" type="text">
-                            <p class="help-block">Description</p>
                         </div>
                         <!-- /
                         <div class="form-group" enctype="multipart/form-data">
