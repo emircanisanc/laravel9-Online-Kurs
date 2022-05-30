@@ -281,56 +281,9 @@
                                 <!-- end single sidebar -->
                                 <!-- start single sidebar -->
                                 <div class="mu-single-sidebar">
-                                    <h3>Popular Course</h3>
-                                    <div class="mu-sidebar-popular-courses">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="assets/img/courses/1.jpg" alt="img">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="#">Medical Science</a></h4>
-                                                <span class="popular-course-price">$200.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="assets/img/courses/2.jpg" alt="img">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="#">Web Design</a></h4>
-                                                <span class="popular-course-price">$250.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="assets/img/courses/3.jpg" alt="img">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="#">Health & Sports</a></h4>
-                                                <span class="popular-course-price">$90.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end single sidebar -->
-                                <!-- start single sidebar -->
-                                <div class="mu-single-sidebar">
                                     <h3>Tags Cloud</h3>
                                     <div class="tag-cloud">
-                                        <a href="#">Health</a>
-                                        <a href="#">Science</a>
-                                        <a href="#">Sports</a>
-                                        <a href="#">Mathematics</a>
-                                        <a href="#">Web Design</a>
-                                        <a href="#">Admission</a>
-                                        <a href="#">History</a>
-                                        <a href="#">Environment</a>
+                                    <p style="font-size: 130%;">{{$data->category->keywords}}</p>
                                     </div>
                                 </div>
                                 <!-- end single sidebar -->

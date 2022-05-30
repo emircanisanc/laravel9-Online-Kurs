@@ -89,7 +89,7 @@
             </li>
 
             <li>
-                <a class="active-menu" href="blank.html"><i class="fa fa-square-o "></i>Blank Page</a>
+                <a href="blank.html"><i class="fa fa-square-o "></i>Blank Page</a>
             </li>
         </ul>
     </div>

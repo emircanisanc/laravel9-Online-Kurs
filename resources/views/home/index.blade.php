@@ -17,21 +17,21 @@
           <div class="mu-service-single">
             <span class="fa fa-book"></span>
             <h3>Learn Online</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima officiis, deleniti dolorem exercitationem praesentium, est!</p>
+            <p>Udemy, yetişkinlere ve öğrencilere yönelik, alanında profesyonel gönüllü eğitmenler tarafından oluşturulan kursları içeren bir çevrimiçi öğrenme platformudur.</p>
           </div>
           <!-- Start single service -->
           <!-- Start single service -->
           <div class="mu-service-single">
             <span class="fa fa-users"></span>
             <h3>Expert Teachers</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima officiis, deleniti dolorem exercitationem praesentium, est!</p>
+            <p>Udemy, yetişkinlere ve öğrencilere yönelik, alanında profesyonel gönüllü eğitmenler tarafından oluşturulan kursları içeren bir çevrimiçi öğrenme platformudur.</p>
           </div>
           <!-- Start single service -->
           <!-- Start single service -->
           <div class="mu-service-single">
             <span class="fa fa-table"></span>
             <h3>Best Classrooms</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima officiis, deleniti dolorem exercitationem praesentium, est!</p>
+            <p>Udemy, yetişkinlere ve öğrencilere yönelik, alanında profesyonel gönüllü eğitmenler tarafından oluşturulan kursları içeren bir çevrimiçi öğrenme platformudur.</p>
           </div>
           <!-- Start single service -->
         </div>
@@ -53,7 +53,7 @@
           <!-- Start Title -->
           <div class="mu-title">
             <h2>Most Popular Categories</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ipsa ea maxime mollitia, vitae voluptates, quod at, saepe reprehenderit totam aliquam architecto fugiat sunt animi!</p>
+            <p style="font-size:200%;">Udemy'de hangi kurslara bakıcağınızı bilmiyorsanız sorun değil. Sizler için en popüler kategorileri derledik !</p>
           </div>
           <!-- End Title -->
           <!-- Start features content -->
@@ -88,7 +88,7 @@
           <!-- Start Title -->
           <div class="mu-title">
             <h2>Latest Courses</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ipsa ea maxime mollitia, vitae voluptates, quod at, saepe reprehenderit totam aliquam architecto fugiat sunt animi!</p>
+            <p style="font-size:200%;">Eğer ne öğreneceğinize karar veremediyseniz sizler için en güncel kursları sergiledik !</p>
           </div>
           <!-- End Title -->
           <!-- Start latest course content -->
@@ -140,7 +140,10 @@
               
                 <blockquote>
                 <p style="color: salmon;">{{$popularComment->course->title}}</p>
-                  <p>{{$popularComment->review}}</p>
+                  <p>{{$popularComment->review}}
+                    <br>
+                    <span><i class="fa fa-star"></i>{{$popularComment->rate}}</span>
+                  </p>
                 </blockquote>
               </div>
               <div class="mu-testimonial-img">

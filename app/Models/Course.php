@@ -20,4 +20,8 @@ class Course extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    public function rate()
+    {
+        return $this->comments->average('rate');
+    }
 }

@@ -24,7 +24,7 @@
               <ul>
                 <li><a href="">Get Started</a></li>
                 <li><a href="{{route('faq')}}">My Questions</a></li>
-                <li><a href="">Latest Course</a></li>
+                <li><a href="#mu-latest-courses">Latest Course</a></li>
               </ul>
             </div>
           </div>
@@ -60,6 +60,3 @@
   <!-- end footer bottom -->
 </footer>
 <!-- End footer -->
-
-
-

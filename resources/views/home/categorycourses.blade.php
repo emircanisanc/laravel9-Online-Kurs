@@ -37,7 +37,7 @@
                                             <figure class="mu-latest-course-img">
                                                 <a href="{{route('course',['id'=>$rs->id])}}"><img src="{{Storage::url($rs->image)}}" width="350" height="300" alt="img"></a>
                                                 <figcaption class="mu-latest-course-imgcaption">
-                                                <a href="{{route('categorycourses', ['id'=>$category->id, 'slug'=>$category->title])}}">{{$category->title}}</a>
+                                                    <a href="{{route('categorycourses', ['id'=>$category->id, 'slug'=>$category->title])}}">{{$category->title}}</a>
                                                 </figcaption>
                                             </figure>
                                             <div class="mu-latest-course-single-content">
@@ -51,10 +51,10 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    
+
                                     @if(count($category->children))
                                     @include('home.categorycoursestree',['children' => $category->children])
-                                    @endif 
+                                    @endif
                                 </div>
                             </div>
                             <!-- end course content container -->
@@ -86,69 +86,22 @@
                             <!-- start sidebar -->
                             <aside class="mu-sidebar">
                                 <!-- start single sidebar -->
+                                @if(count($category->children))
                                 <div class="mu-single-sidebar">
                                     <h3>SubCategories</h3>
                                     <ul class="mu-sidebar-catg">
-                                    @if(count($category->children))
                                         @foreach($category->children as $childcategory)
                                         <li><a href="{{route('categorycourses', ['id'=>$childcategory->id, 'slug'=>$childcategory->title])}}">{{$childcategory->title}}</a></li>
                                         @endforeach
-                                    @endif
                                     </ul>
                                 </div>
-                                <!-- end single sidebar -->
-                                <!-- start single sidebar -->
-                                <div class="mu-single-sidebar">
-                                    <h3>Popular Course</h3>
-                                    <div class="mu-sidebar-popular-courses">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="assets/img/courses/1.jpg" alt="img">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="#">Medical Science</a></h4>
-                                                <span class="popular-course-price">$200.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="assets/img/courses/2.jpg" alt="img">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="#">Web Design</a></h4>
-                                                <span class="popular-course-price">$250.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="assets/img/courses/3.jpg" alt="img">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="#">Health & Sports</a></h4>
-                                                <span class="popular-course-price">$90.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endif
                                 <!-- end single sidebar -->
                                 <!-- start single sidebar -->
                                 <div class="mu-single-sidebar">
                                     <h3>Tags Cloud</h3>
                                     <div class="tag-cloud">
-                                        <a href="#">Health</a>
-                                        <a href="#">Science</a>
-                                        <a href="#">Sports</a>
-                                        <a href="#">Mathematics</a>
-                                        <a href="#">Web Design</a>
-                                        <a href="#">Admission</a>
-                                        <a href="#">History</a>
-                                        <a href="#">Environment</a>
+                                        <p style="font-size: 130%;">{{$category->keywords}}</p>
                                     </div>
                                 </div>
                                 <!-- end single sidebar -->
@@ -161,6 +114,50 @@
         </div>
     </div>
 </section>
+@if($category->parent)
+@if(count($category->parent->children) > 1)
 
+<!-- Start related categories section -->
+<section id="mu-latest-courses">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="mu-latest-courses-area">
+          <!-- Start Title -->
+          <div class="mu-title">
+            <h2>Related Categories</h2>
+            <p style="font-size:200%;">{{$category->title}}ne bakanlar bunlara da baktı.</p>
+          </div>
+          <!-- End Title -->
+          <!-- Start related categories content -->
+          <div id="mu-latest-course-slide" class="mu-latest-courses-content">
+          @foreach($category->parent->children as $rs)
+            <div class="col-lg-4 col-md-4 col-xs-12" >
+              <div class="mu-latest-course-single">
+                <figure class="mu-latest-course-img" style="width: 350; height: 300;">
+                  <a href="{{route('categorycourses', ['id'=>$rs->id, 'slug'=>$rs->title])}}"><img src="{{Storage::url($rs->image)}}" width="350" height="300" alt="img" style="width: 350; height: 300;"></a>
+                  <figcaption class="mu-latest-course-imgcaption">
+                    <span><a href="{{route('categorycourses', ['id'=>$rs->id, 'slug'=>$rs->title])}}">{{$rs->title}}</a></span>
+                  </figcaption>
+                </figure>
+                <div class="mu-latest-mu-latest-courses-content">
+                  <p>{{$rs->keywords}}</p>
+                  <div class="mu-latest-course-single-contbottom">
+                    <a class="mu-course-details" href="{{route('categorycourses', ['id'=>$rs->id, 'slug'=>$rs->title])}}">Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endforeach
+          </div>
+          <!-- End related categories content -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End related categories section -->
 
+@endif
+@endif
 @endsection

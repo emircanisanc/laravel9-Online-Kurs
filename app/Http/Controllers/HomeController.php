@@ -24,7 +24,7 @@ class HomeController extends Controller
     {
         $sliderdata=$this->maincategorylist();
         $popularcategories=Category::skip(3)->limit(6)->get();
-        $courses=Course::limit(9)->get();
+        $courses=Course::latest()->take(5)->get();
         $popularComments=Comment::limit(3)->where('rate', 5)->get();
         $setting=Setting::first();
         return view('home.index', [
@@ -153,6 +153,14 @@ class HomeController extends Controller
     {
         $setting=Setting::first();
         return view('home.register', [
+            'setting'=>$setting 
+        ]);
+    }
+
+    public function loginuser()
+    {
+        $setting=Setting::first();
+        return view('home.login', [
             'setting'=>$setting 
         ]);
     }
