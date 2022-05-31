@@ -28,8 +28,12 @@
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} <span class="fa fa-angle-down"></span></a>
                       <ul class="dropdown-menu" role="menu">
-                        <li><a href="blog-single.html">Blog Single</a></li>
+                        <li><a href="{{route('userpanel.index')}}">My Profile</a></li>
                         <li><a href="/logoutuser">Logout</a></li>
+                        <li><a href="blog-single.html">My Orders</a></li>
+                        <li><a href="blog-single.html">Checkout</a></li>
+                        <li><a href="blog-single.html">My Courses</a></li>
+                        <li><a href="blog-single.html">My Reviews</a></li>
                       </ul>
                     </li>
                     @else

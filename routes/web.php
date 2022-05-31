@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 use App\Http\Controllers\AdminPanel\ImageController;
 use App\Http\Controllers\AdminPanel\MessageController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,9 +70,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-//// ADMIN PANEL ROUTES ******************
 
-Route::middleware('admin')->prefix('admin')->name('admin.')->group(function ()
+/// AUTH CONTROL ///
+Route::middleware('auth')->group(function () {
+
+    //// USER PANEL ROUTES ******************
+    Route::prefix('userpanel')->name('userpanel.')->controller(UserController::class)->group(function (){
+        Route::get('/', 'index')->name('index');
+    });
+
+
+//// ADMIN PANEL ROUTES ******************
+    Route::middleware('admin')->prefix('admin')->name('admin.')->group(function ()
 {
     Route::get('/', [AdminHomeController::class, 'index'])->name('index');
     //// ADMIN GENERAL ROUTES ******************
@@ -163,4 +173,5 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function ()
         Route::post('/addrole/{id}', 'addrole')->name('addrole');
         Route::get('/destroyrole/{uid}/{rid}', 'destroyrole')->name('destroyrole');
     });
+});
 });
