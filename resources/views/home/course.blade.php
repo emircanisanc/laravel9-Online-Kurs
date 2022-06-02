@@ -53,17 +53,17 @@
                                                         </div>
                                                     </div>
                                                     @endif
-                                                        @foreach($content->images as $galleryPhoto)
-                                                        @if ($content->image)
-                                                            <div class="mu-slider-single">
-                                                                <div class="mu-slider-img">
-                                                                    <figure>
-                                                                        <img src="{{Storage::url($galleryPhoto->image)}}" alt="img">
-                                                                    </figure>
-                                                                </div>
-                                                            </div>
-                                                            @endif
-                                                        @endforeach
+                                                    @foreach($content->images as $galleryPhoto)
+                                                    @if ($content->image)
+                                                    <div class="mu-slider-single">
+                                                        <div class="mu-slider-img">
+                                                            <figure>
+                                                                <img src="{{Storage::url($galleryPhoto->image)}}" alt="img">
+                                                            </figure>
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                    @endforeach
                                                     @endforeach
 
                                                 </section>
@@ -114,6 +114,7 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                                <a href="{{route('userpanel.shopcart', ['id'=>$data->id])}}" class="mu-read-more-btn" style="color: blue;">Buy Course</a>
                                             </div>
                                         </div>
                                     </div>
@@ -283,7 +284,7 @@
                                 <div class="mu-single-sidebar">
                                     <h3>Tags Cloud</h3>
                                     <div class="tag-cloud">
-                                    <p style="font-size: 130%;">{{$data->category->keywords}}</p>
+                                        <p style="font-size: 130%;">{{$data->category->keywords}}</p>
                                     </div>
                                 </div>
                                 <!-- end single sidebar -->

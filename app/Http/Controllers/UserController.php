@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Course;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,16 @@ class UserController extends Controller
         $data = Comment::find($id);
         $data->delete();
         return redirect(route('userpanel.comments'));
+    }
+
+    public function shopcart($id)
+    {
+        $setting=Setting::first();
+        $data = Course::find($id);
+        return view('home.user.shopcart',[
+            'setting' => $setting,
+            'data' => $data
+        ]);
     }
 
     /**

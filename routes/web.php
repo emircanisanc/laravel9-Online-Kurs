@@ -79,6 +79,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/comments', 'comments')->name('comments');
         Route::get('/commentdestroy/{id}', 'commentdestroy')->name('commentdestroy');
+        Route::get('/shopcart/{id}', 'shopcart')->name('shopcart');
     });
 
 
