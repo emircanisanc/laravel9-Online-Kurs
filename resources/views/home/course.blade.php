@@ -44,15 +44,6 @@
                                                         </div>
                                                     </div>
                                                     @foreach($data->contents as $content)
-                                                    @if ($content->image)
-                                                    <div class="mu-slider-single">
-                                                        <div class="mu-slider-img">
-                                                            <figure>
-                                                                <img src="{{Storage::url($content->image)}}" alt="img">
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                    @endif
                                                     @foreach($content->images as $galleryPhoto)
                                                     @if ($content->image)
                                                     <div class="mu-slider-single">
@@ -98,16 +89,20 @@
                                                             <tr>
                                                                 <th> Title </th>
                                                                 <th> Course Time </th>
-                                                                <th> Spent Time </th>
+                                                                <th> Content Image </th>
                                                                 <th> Status </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             @foreach($data->contents as $content)
                                                             <tr>
-                                                                <td> 1. {{$content->title}} </td>
+                                                                <td> {{ ++$loop->index}} {{$content->title}} </td>
                                                                 <td> 15:30 </td>
-                                                                <td> 13:80 </td>
+                                                                <td>
+                                                                    @if ($content->image)
+                                                                    <img src="{{Storage::url($content->image)}}" alt="img" height="50px">
+                                                                    @endif
+                                                                </td>
                                                                 <td> Successful </td>
                                                             </tr>
                                                             @endforeach
