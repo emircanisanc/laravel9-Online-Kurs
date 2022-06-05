@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Course;
+use App\Models\Order;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +49,45 @@ class UserController extends Controller
         return view('home.user.shopcart',[
             'setting' => $setting,
             'data' => $data
+        ]);
+    }
+
+    public function storeorder(Request $request)
+    {
+        $cardcheck = "True";
+
+        if($cardcheck=='True')
+        {
+        $data = new Order();
+        $data->course_id = $request->input('course_id');
+        $data->user_id = Auth::id();
+        $data->price = $request->input('price');
+        $data->IP = $_SERVER['REMOTE_ADDR'];
+        $data->save();
+        
+        return redirect()->route('userpanel.ordercomplete')->with('success', 'Course Order Successfuly');
+        }
+        else
+        {
+            return redirect()->route('userpanel.ordercomplete')->with('error', 'Your credit card is not valid');
+        }
+        
+    }
+
+    public function ordercomplete()
+    {
+        //
+        $setting = Setting::first();
+        return view('home.user.ordercomplete',['setting'=>$setting]);
+    }
+
+    public function orders()
+    {
+        $setting=Setting::first();
+        $orders = Order::where('user_id', '=', Auth::id())->get();
+        return view('home.user.orders',[
+            'setting' => $setting,
+            'orders' => $orders
         ]);
     }
 

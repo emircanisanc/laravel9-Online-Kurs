@@ -1,6 +1,6 @@
 @extends('layouts.frontbase')
 
-@section('title', 'Shopcart')
+@section('title', 'User Orders')
 
 
 @section('content')
@@ -14,7 +14,7 @@
                     <h2>USER PROFILE</h2>
                     <ol class="breadcrumb">
                         <li><a href="{{route('home')}}">Home</a></li>
-                        <li class="active">User Shopcart</li>
+                        <li class="active">User Orders</li>
                     </ol>
                 </div>
             </div>
@@ -51,39 +51,38 @@
 
                                         <div class="col-md-10">
                                             <div class="mu-contact-right">
-                                                <h1>COURSE INFORMATION</h1>
-                                                <figure class="mu-latest-course-img">
-                                                    <section id="mu-slider">
-                                                        <div class="mu-slider-single">
-                                                            <div class="mu-slider-img">
-                                                                <figure>
-                                                                    <img src="{{Storage::url($data->image)}}" alt="img">
-                                                                </figure>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </figure>
-                                                <div class="mu-latest-course-single-content">
-                                                    <h2><a href="{{route('course',['id'=>$data->id])}}">{{$data->title}}</a></h2>
-                                                    <h4>Course Information</h4>
-                                                    <ul>
-                                                        <li> <span>Course Price</span> <span>${{$data->price}}</span></li>
-                                                    </ul>
-                                                    <form action="{{route('userpanel.storeorder')}}" method="POST" enctype="multipart/form-data">
-                                                         @csrf
-                                                        <input name="price" value="{{$data->price}}" type="hidden">
-                                                        <input name="course_id" value="{{$data->id}}" type="hidden">
-                                                    <button type="submit" class="btn-light" style="color: blue;">Buy Now</button>
-                                                    </form>
-                                                </div>
+                                                <h1>USER ORDERS</h1>
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Course</th>
+                                                            <th>Price</th>
+                                                            <th>Status</th>
+                                                            <th>Order Date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($orders as $rs)
+                                                        <tr>
+                                                            <td>{{$rs->id}}</td>
+                                                            <td><a href="{{route('course', ['id'=>$rs->course->id])}}">{{$rs->course->title}}</a></td>
+                                                            <td>${{$rs->price}}</td>
+                                                            <td>{{$rs->status}}</td>
+                                                            <td>{{$rs->created_at}}</td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- end contact content -->
                                 </div>
+                                <!-- end contact content -->
                             </div>
                         </div>
                     </div>
+                </div>
             </section>
             <!-- End contact  -->
 

@@ -80,6 +80,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/comments', 'comments')->name('comments');
         Route::get('/commentdestroy/{id}', 'commentdestroy')->name('commentdestroy');
         Route::get('/shopcart/{id}', 'shopcart')->name('shopcart');
+        Route::get('/orders', 'orders')->name('orders');
+        Route::get('/ordercomplete', 'ordercomplete')->name('ordercomplete');
+        Route::post('/storeorder', 'storeorder')->name('storeorder');
     });
 
 
