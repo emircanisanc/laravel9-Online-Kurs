@@ -10,7 +10,6 @@
               <h4>Information</h4>
               <ul>
                 <li><a href="{{route('about')}}">About Us</a></li>
-                <li><a href="{{route('contact')}}">Contact</a></li>
                 <li><a href="">Course</a></li>
                 <li><a href="">Event</a></li>
                 <li><a href="">Sitemap</a></li>
@@ -25,6 +24,7 @@
                 <li><a href="">Get Started</a></li>
                 <li><a href="{{route('faq')}}">My Questions</a></li>
                 <li><a href="#mu-latest-courses">Latest Course</a></li>
+                <li><a href="{{route('contact')}}">Contact</a></li>
               </ul>
             </div>
           </div>
@@ -40,7 +40,7 @@
                 <p>{{$setting->address}}</p>
                 <p>Phone: {{$setting->phone}} </p>
                 <p>Website: www.markups.io</p>
-                <p>Email: {{$setting->email}}</p>
+                <p><a href="mailto:{{$setting->email}}" style="color: white;">Email: {{$setting->email}}</a></p>
               </address>
             </div>
           </div>

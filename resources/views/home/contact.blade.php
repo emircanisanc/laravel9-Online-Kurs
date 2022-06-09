@@ -37,7 +37,7 @@
                                 <!-- start title -->
                                 <div class="mu-title">
                                     <h2>Get in Touch</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores ut laboriosam corporis doloribus, officia, accusamus illo nam tempore totam alias!</p>
+                                    <p>Check out our <a href="{{route('faq')}}">Help and Support center</a> to find quick answers to your questions.</p>
                                 </div>
                                 <!-- end title -->
                                 <!-- start contact content -->

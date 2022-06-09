@@ -8,7 +8,7 @@
               <div class="mu-header-top-left">
                 <div class="mu-top-email">
                   <i class="fa fa-envelope"></i>
-                  <span>{{$setting->email}}</span>
+                  <span><a href="mailto:{{$setting->email}}">{{$setting->email}}</a></span>
                 </div>
                 <div class="mu-top-phone">
                   <i class="fa fa-phone"></i>
