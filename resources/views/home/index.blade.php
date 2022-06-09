@@ -61,7 +61,7 @@
             <div class="row">
               @foreach($popularcategories as $rs)
               <div class="col-lg-4 col-md-4  col-sm-6">
-                <div class="mu-single-feature">
+                <div class="mu-single-feature" style="min-height:200px;">
                   <span class="fa fa-book"></span>
                   <h4>{{$rs->title}}</h4>
                   <p>{{$rs->keywords}}</p>
