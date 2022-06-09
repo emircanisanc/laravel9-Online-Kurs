@@ -1,6 +1,6 @@
 @extends('layouts.frontbase')
 
-@section('title', 'User Comment & Reviews')
+@section('title', 'User Courses')
 
 
 @section('content')
@@ -14,7 +14,7 @@
                     <h2>USER PROFILE</h2>
                     <ol class="breadcrumb">
                         <li><a href="{{route('home')}}">Home</a></li>
-                        <li class="active">User Comment & Reviews</li>
+                        <li class="active">User Courses</li>
                     </ol>
                 </div>
             </div>
@@ -34,8 +34,8 @@
                             <div class="mu-contact-area">
                                 <!-- start title -->
                                 <div class="mu-title">
-                                    <h2>YORUMLARIM</h2>
-                                    <p>Tüm yorumlarınızı burada görüntüleyebilir ve silebilirsiniz.</p>
+                                    <h2>KURSLARIM</h2>
+                                    <p>Tüm kurslarınıza bu sayfadan ulaşabilirsiniz.</p>
                                 </div>
                                 <!-- end title -->
                                 <!-- start contact content -->
@@ -51,29 +51,19 @@
 
                                         <div class="col-md-10">
                                             <div class="mu-contact-right">
-                                                <h1>USER COMMENT & REVIEWS</h1>
+                                                <h1>USER COURSES</h1>
                                                 <table class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>Id</th>
                                                             <th>Course</th>
-                                                            <th>Subject</th>
-                                                            <th>Review</th>
-                                                            <th>Rate</th>
-                                                            <th>Status</th>
-                                                            <th>Delete</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach($comments as $rs)
+                                                        @foreach($courses as $rs)
                                                         <tr>
                                                             <td>{{$rs->id}}</td>
-                                                            <td><a href="{{route('course', ['id'=>$rs->course->id])}}">{{$rs->course->title}}</a></td>
-                                                            <td>{{$rs->subject}}</td>
-                                                            <td>{{$rs->review}}</td>
-                                                            <td>{{$rs->rate}}</td>
-                                                            <td>{{$rs->status}}</td>
-                                                            <td><a href="{{route('userpanel.commentdestroy', ['id'=>$rs->id])}}" onclick="return confirm('Deleting !! Are you sure ?')"><button type="button" class="btn btn-danger">Delete</button></a>
+                                                            <td><a href="{{route('course', ['id'=>$rs->id])}}">{{$rs->title}}</a></td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>

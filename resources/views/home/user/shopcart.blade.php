@@ -34,8 +34,8 @@
                             <div class="mu-contact-area">
                                 <!-- start title -->
                                 <div class="mu-title">
-                                    <h2>Get in Touch</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores ut laboriosam corporis doloribus, officia, accusamus illo nam tempore totam alias!</p>
+                                    <h2>Siparişi Tamamla</h2>
+                                    <p>Enter your credit card informations and make your dream come true</p>
                                 </div>
                                 <!-- end title -->
                                 <!-- start contact content -->
@@ -69,12 +69,16 @@
                                                     <ul>
                                                         <li> <span>Course Price</span> <span>${{$data->price}}</span></li>
                                                     </ul>
+                                                    @if($user->courses->contains('id', $data->id))
+                                                    <button class="btn-light" style="color: blue;">Watch Now</button>
+                                                    @else
                                                     <form action="{{route('userpanel.storeorder')}}" method="POST" enctype="multipart/form-data">
                                                          @csrf
                                                         <input name="price" value="{{$data->price}}" type="hidden">
                                                         <input name="course_id" value="{{$data->id}}" type="hidden">
                                                     <button type="submit" class="btn-light" style="color: blue;">Buy Now</button>
                                                     </form>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

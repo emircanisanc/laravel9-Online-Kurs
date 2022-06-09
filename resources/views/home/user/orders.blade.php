@@ -34,8 +34,8 @@
                             <div class="mu-contact-area">
                                 <!-- start title -->
                                 <div class="mu-title">
-                                    <h2>Get in Touch</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores ut laboriosam corporis doloribus, officia, accusamus illo nam tempore totam alias!</p>
+                                    <h2>SİPARİŞLERİNİZ</h2>
+                                    <p>Onaylanmış ve beklemekte olan tüm siparişlerinizi buradan görebilirsiniz.</p>
                                 </div>
                                 <!-- end title -->
                                 <!-- start contact content -->

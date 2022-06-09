@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Course;
 use App\Models\Order;
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,17 @@ class UserController extends Controller
         ]);
     }
 
+    public function courses()
+    {
+        $setting=Setting::first();
+        $user = User::find(Auth::id());
+        $courses = $user->courses;
+        return view('home.user.courses',[
+            'setting' => $setting,
+            'courses' => $courses
+        ]);
+    }
+
     public function commentdestroy($id)
     {
         $setting=Setting::first();
@@ -46,9 +58,11 @@ class UserController extends Controller
     {
         $setting=Setting::first();
         $data = Course::find($id);
+        $user = User::find(Auth::id());
         return view('home.user.shopcart',[
             'setting' => $setting,
-            'data' => $data
+            'data' => $data,
+            'user' => $user
         ]);
     }
 

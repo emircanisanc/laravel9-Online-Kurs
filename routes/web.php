@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('userpanel')->name('userpanel.')->controller(UserController::class)->group(function (){
         Route::get('/', 'index')->name('index');
         Route::get('/comments', 'comments')->name('comments');
+        Route::get('/courses', 'courses')->name('courses');
         Route::get('/commentdestroy/{id}', 'commentdestroy')->name('commentdestroy');
         Route::get('/shopcart/{id}', 'shopcart')->name('shopcart');
         Route::get('/orders', 'orders')->name('orders');

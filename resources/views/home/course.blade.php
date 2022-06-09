@@ -71,10 +71,9 @@
                                                 <ul>
                                                     <li> <span>Course Price</span> <span>${{$data->price}}</span></li>
                                                     <li> <span>Course Rate</span> <span>{{number_format($average, 1)}}</span></li>
-                                                    <li> <span>Place</span> <span>California,USA</span></li>
-                                                    <li> <span>Total Students</span> <span>800+</span></li>
-                                                    <li> <span>Course Duration</span> <span>4 Weeks</span></li>
-                                                    <li> <span>Course Start</span> <span>July 25, 2016</span></li>
+                                                    <li> <span>Total Students</span> <span>{{count($data->owners)}}+</span></li>
+                                                    <li> <span>Course Published</span> <span>{{$data->created_at}}</span></li>
+                                                    <li> <span>Course Last Update</span> <span>{{$data->updated_at}}</span></li>
                                                 </ul>
                                                 <h3>Description</h3>
                                                 <p>{{$data->description}}</p>
@@ -109,7 +108,16 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <a href="{{route('userpanel.shopcart', ['id'=>$data->id])}}" class="mu-read-more-btn" style="color: blue;">Buy Course</a>
+                                                @auth
+                                                @if(Auth::user()->courses->contains('id', $data->id))
+                                                <a href="#" class="btn btn-success" role="button">Watch Now</a>
+                                                @else
+                                                <a href="{{route('userpanel.shopcart', ['id'=>$data->id])}}" class="btn btn-info" role="button">Buy Course</a>
+                                                @endif
+                                                @endauth
+                                                @guest
+                                                <a href="{{route('userpanel.shopcart', ['id'=>$data->id])}}" class="btn btn-info" role="button">Buy Course</a>
+                                                @endguest
                                             </div>
                                         </div>
                                     </div>
@@ -159,7 +167,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mu-comments-area">
-                                        <h3>{{$data->comments->count('id')}} Comments</h3>
+                                        <h3>{{count($commentlist)}} Comments</h3>
                                         <div class="comments">
                                             <ul class="commentlist">
                                                 @foreach($commentlist as $rs)
@@ -169,7 +177,16 @@
                                                             <img alt="img" src="assets/img/testimonial-1.png" class="media-object news-img">
                                                         </div>
                                                         <div class="media-body">
-                                                            <h3 class="author-name">{{$rs->user->name}}</h3>
+                                                            <h3 class="author-name">
+                                                                {{$rs->user->name}}
+                                                            </h3>
+                                                            <h6>
+                                                                @if($rs->user->courses->contains('id', $data->id))
+                                                                (Owner)
+                                                                @else
+                                                                (Not Owner)
+                                                                @endif
+                                                            </h6>
                                                             <span class="comments-date">{{$rs->created_at}}</span>
                                                             <h5>Rate : {{$rs->rate}}</h5>
                                                             <h4>{{$rs->subject}}</h4>
@@ -180,26 +197,6 @@
                                                 </li>
                                                 @endforeach
                                             </ul>
-                                            <!-- comments pagination -->
-                                            <nav>
-                                                <ul class="pagination comments-pagination">
-                                                    <li>
-                                                        <a aria-label="Previous" href="#">
-                                                            <span class="fa fa-long-arrow-left"></span>
-                                                        </a>
-                                                    </li>
-                                                    <li><a href="#">1</a></li>
-                                                    <li><a href="#">2</a></li>
-                                                    <li><a href="#">3</a></li>
-                                                    <li><a href="#">4</a></li>
-                                                    <li><a href="#">5</a></li>
-                                                    <li>
-                                                        <a aria-label="Next" href="#">
-                                                            <span class="fa fa-long-arrow-right"></span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
                                         </div>
                                     </div>
                                 </div>

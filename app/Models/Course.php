@@ -24,4 +24,8 @@ class Course extends Model
     {
         return $this->comments->average('rate');
     }
+    public function owners()
+    {
+        return $this->belongsToMany(User::class, 'course_owners', 'course_id', 'user_id');
+    }
 }

@@ -20,7 +20,7 @@ $courses = DB::table('courses')->where('category_id', $subcategory->id)->get();
                 <p>{{$rs->keywords}}</p>
                 <div class="mu-latest-course-single-contbottom">
                     <a class="mu-course-details" href="{{route('course',['id'=>$rs->id])}}">Details</a>
-                    <span class="mu-course-price" href="#">${{$rs->price}}</span>
+                    <span class="mu-course-price" href="#"><a href="{{route('userpanel.shopcart', ['id'=>$rs->id])}}">${{$rs->price}}</a></span>
                 </div>
             </div>
         </div>
