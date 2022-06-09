@@ -46,6 +46,17 @@ class UserController extends Controller
         ]);
     }
 
+    public function createdcourses()
+    {
+        $setting=Setting::first();
+        $user = User::find(Auth::id());
+        $courses = $user->createdCourses;
+        return view('home.user.createdCourses',[
+            'setting' => $setting,
+            'courses' => $courses
+        ]);
+    }
+
     public function commentdestroy($id)
     {
         $setting=Setting::first();

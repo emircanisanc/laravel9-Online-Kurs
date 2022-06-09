@@ -55,15 +55,17 @@
                                                 <table class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>Id</th>
                                                             <th>Course</th>
+                                                            <th>Teacher</th>
+                                                            <th>Watch Link</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         @foreach($courses as $rs)
                                                         <tr>
-                                                            <td>{{$rs->id}}</td>
                                                             <td><a href="{{route('course', ['id'=>$rs->id])}}">{{$rs->title}}</a></td>
+                                                            <td>{{$rs->creator->name}}</td>
+                                                            <td><a href="#" class="btn btn-success" role="button">Watch Now</a></td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>

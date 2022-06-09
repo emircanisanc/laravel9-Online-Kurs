@@ -79,6 +79,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/comments', 'comments')->name('comments');
         Route::get('/courses', 'courses')->name('courses');
+        Route::get('/createdcourses', 'createdcourses')->name('createdcourses');
         Route::get('/commentdestroy/{id}', 'commentdestroy')->name('commentdestroy');
         Route::get('/shopcart/{id}', 'shopcart')->name('shopcart');
         Route::get('/orders', 'orders')->name('orders');

@@ -28,4 +28,8 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class, 'course_owners', 'course_id', 'user_id');
     }
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

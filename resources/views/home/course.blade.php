@@ -191,7 +191,6 @@
                                                             <h5>Rate : {{$rs->rate}}</h5>
                                                             <h4>{{$rs->subject}}</h4>
                                                             <p>{{$rs->review}}</p>
-                                                            <a class="reply-btn" href="#">Reply <span class="fa fa-long-arrow-right"></span></a>
                                                         </div>
                                                     </div>
                                                 </li>
