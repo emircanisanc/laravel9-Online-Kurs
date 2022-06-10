@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminPanel;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Image;
@@ -33,7 +34,8 @@ class AdminCourseController extends Controller
     {
         //
         $data = Category::all();
-        return view ('admin.course.create',['data' => $data]);
+        $users = User::all();
+        return view ('admin.course.create',['data' => $data, 'users'=>$users]);
     }
 
     /**
@@ -86,10 +88,12 @@ class AdminCourseController extends Controller
         //
         $data = Course::find($id);
         $datalist = Category::all();
+        $users = User::all();
         return view ('admin.course.edit',
         [
             'data' => $data,
-            'datalist' => $datalist
+            'datalist' => $datalist,
+            'users'=>$users
         ]);
     }
 

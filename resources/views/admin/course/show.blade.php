@@ -25,6 +25,10 @@
                                         <td>{{$data->category->title}}</td>
                                     </tr>
                                     <tr>
+                                        <th style="width: 100px">User</th>
+                                        <td>{{$data->creator->name}}</td>
+                                    </tr>
+                                    <tr>
                                         <th style="width: 100px">Title</th>
                                         <td>{{$data->title}}</td>
                                     </tr>

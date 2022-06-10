@@ -30,6 +30,18 @@
                             </div>
 
                             <div class="form-group">
+                                <label>User</label>
+                                <select class="form-control select2" name="user_id">
+                                    @if($data->creator)
+                                    <option value="{{ $data->user_id }}" selected>{{$data->creator->name}}</option>
+                                    @endif
+                                    @foreach($users as $rs)
+                                    <option value="{{ $rs->id }}">{{$rs->name}} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Title</label>
                                 <input class="form-control" name="title" value="{{$data->title}}" type="text">
                             </div>

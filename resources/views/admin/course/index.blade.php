@@ -26,11 +26,11 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Category</th>
+                                        <th>User</th>
                                         <th>Title</th>
                                         <th>Keywords</th>
                                         <th>Description</th>
                                         <th>Image</th>
-                                        <th>Detail</th>
                                         <th>Price</th>
                                         <th>Status</th>
                                         <th>Edit</th>
@@ -43,6 +43,13 @@
                                     <tr>
                                         <td>{{$rs->id}}</td>
                                         <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs->category, $rs->category->title) }}</td>
+                                        <td>
+                                            @if($rs->creator)
+                                            {{$rs->creator->name}}
+                                            @else
+                                            NULL
+                                            @endif
+                                        </td>
                                         <td>{{$rs->title}}</td>
                                         <td>{{$rs->keywords}}</td>
                                         <td>{{$rs->description}}</td>
@@ -51,7 +58,6 @@
                                             <img src="{{Storage::url($rs->image)}}" style="height: 40px">
                                             @endif
                                         </td>
-                                        <td>{!! $rs->detail !!}</td>
                                         <td>{{$rs->price}}</td>
                                         <td>{{$rs->status}}</td>
                                         <td><a href="{{route('admin.course.edit', ['id'=>$rs->id])}}"><button type="button" class="btn btn-info">Edit</button></a></td>

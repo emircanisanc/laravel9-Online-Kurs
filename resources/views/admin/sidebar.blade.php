@@ -57,40 +57,11 @@
             <li>
                 <a href="{{route('admin.user.index')}}"><ion-icon name="person-circle-outline"></ion-icon> Users</a>
             </li>
-            <li>
-                <a href="/admin/social"><ion-icon name="earth-outline"></ion-icon> Social</a>
-            </li>
+
             <li>
                 <a href="/admin/setting"><ion-icon name="construct-outline"></ion-icon> Settings</a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-sitemap "></i>Multilevel Link <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#"><i class="fa fa-bicycle "></i>Second Level Link</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-flask "></i>Second Level Link</a>
-                    </li>
-                    <li>
-                        <a href="#">Second Level Link<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="#"><i class="fa fa-plus "></i>Third Level Link</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-comments-o "></i>Third Level Link</a>
-                            </li>
 
-                        </ul>
-
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="blank.html"><i class="fa fa-square-o "></i>Blank Page</a>
-            </li>
         </ul>
     </div>
 
