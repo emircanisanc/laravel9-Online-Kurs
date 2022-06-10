@@ -46,6 +46,22 @@
                 </ul>
             </li>
             <li>
+                <a href="#"><ion-icon name="albums-outline"></ion-icon> Orders <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+
+                    <li>
+                        <a href="{{route('admin.order.index', ['slug'=>'New'])}}"><ion-icon name="copy-outline"></ion-icon> New Orders </a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.order.index', ['slug'=>'Accepted'])}}"><ion-icon name="duplicate-outline"></ion-icon> Accepted Orders</a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.order.index', ['slug'=>'Declined'])}}"><ion-icon name="duplicate-outline"></ion-icon> Declined Orders</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
                 <a href="{{route('admin.comment.index')}}"><ion-icon name="chatbox-ellipses-outline"></ion-icon> Comments</a>
             </li>
             <li>

@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\Faq;
 use App\Models\Message;
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -125,6 +126,17 @@ class HomeController extends Controller
         [
             'category' => $category,
             'courselist' => $courselist,
+            'setting' => $setting
+        ]);
+    }
+
+    public function userpage($id)
+    {
+        $setting=Setting::first();
+        $user = User::find($id); 
+        return view('home.userpage',
+        [
+            'user' => $user,
             'setting' => $setting
         ]);
     }

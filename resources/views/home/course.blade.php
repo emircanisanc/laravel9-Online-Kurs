@@ -111,6 +111,8 @@
                                                 @auth
                                                 @if(Auth::user()->courses->contains('id', $data->id))
                                                 <a href="#" class="btn btn-success" role="button">Watch Now</a>
+                                                @elseif(Auth::user()->createdCourses->contains('id', $data->id))
+                                                <a href="#" class="btn btn-success" role="button">Watch Now</a>
                                                 @else
                                                 <a href="{{route('userpanel.shopcart', ['id'=>$data->id])}}" class="btn btn-info" role="button">Buy Course</a>
                                                 @endif
@@ -180,13 +182,20 @@
                                                             <h3 class="author-name">
                                                                 {{$rs->user->name}}
                                                             </h3>
-                                                            <h6>
-                                                                @if($rs->user->courses->contains('id', $data->id))
-                                                                (Owner)
-                                                                @else
-                                                                (Not Owner)
-                                                                @endif
+                                                            @if($rs->user->createdCourses->contains('id', $data->id))
+                                                            <h4 style="color: blue;">
+                                                            (Creator)
+                                                            </h4>    
+                                                            @elseif($rs->user->courses->contains('id', $data->id))
+                                                            <h6 style="color: greenyellow;">
+                                                            (Owner)
                                                             </h6>
+                                                            @else
+                                                            <h6>
+                                                            (Not Owner)
+                                                            </h6> 
+                                                            @endif
+                                                           
                                                             <span class="comments-date">{{$rs->created_at}}</span>
                                                             <h5>Rate : {{$rs->rate}}</h5>
                                                             <h4>{{$rs->subject}}</h4>

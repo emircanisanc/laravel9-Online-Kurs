@@ -7,7 +7,7 @@
 <div id="page-wrapper">
     <div id="page-inner">
         <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="col-md-12">
 
                 <div class="panel panel-info">
 
@@ -18,7 +18,7 @@
 
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-striped w-auto">
                                 <tbody>
                                     <tr>
                                         <th style="width: 100px">Category</th>

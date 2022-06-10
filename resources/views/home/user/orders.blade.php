@@ -55,8 +55,8 @@
                                                 <table class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>Id</th>
                                                             <th>Course</th>
+                                                            <th>Teacher</th>
                                                             <th>Price</th>
                                                             <th>Status</th>
                                                             <th>Order Date</th>
@@ -65,8 +65,8 @@
                                                     <tbody>
                                                         @foreach($orders as $rs)
                                                         <tr>
-                                                            <td>{{$rs->id}}</td>
                                                             <td><a href="{{route('course', ['id'=>$rs->course->id])}}">{{$rs->course->title}}</a></td>
+                                                            <td>{{$rs->course->creator->name}}</td>
                                                             <td>${{$rs->price}}</td>
                                                             <td>{{$rs->status}}</td>
                                                             <td>{{$rs->created_at}}</td>

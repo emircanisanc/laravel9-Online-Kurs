@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6" style="width:100%">
+            <div class="col-md-12" style="width:100%">
                 <!--   COURSES -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover">
+                            <table class="table table-striped w-auto table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
