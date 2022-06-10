@@ -67,6 +67,10 @@ class AdminContentController extends Controller
         {
             $data->image = $request->file('image')->store('images');
         }
+        if($request->hasFile('file'))
+        {
+            $data->file = $request->file('file')->store('videos');
+        }
         $data->save();
         return redirect()->route('admin.content.index', ['pid'=>$_POST['course_id']]);
     }
@@ -126,8 +130,12 @@ class AdminContentController extends Controller
         {
             $data->image = $request->file('image')->store('images');
         }
+        if($request->hasFile('file'))
+        {
+            $data->file = $request->file('file')->store('videos');
+        }
         $data->save();
-        return redirect('admin.content.index', ['id' => $data->course_id]);
+        return redirect()->route('admin.content.index', ['pid' => $data->course_id]);
     }
 
     /**
@@ -143,6 +151,10 @@ class AdminContentController extends Controller
         if($data->image && Storage::disk('public')->exists($data->image))
         {
             Storage::delete($data->image);
+        }
+        if($data->file && Storage::disk('public')->exists($data->file))
+        {
+            Storage::delete($data->file);
         }
         $data->delete();
         return redirect()->route('admin.content.index', ['pid'=>$pid]);

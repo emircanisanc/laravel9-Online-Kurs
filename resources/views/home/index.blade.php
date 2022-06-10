@@ -150,7 +150,11 @@
                 <img src="{{asset('assets')}}/assets/img/testimonial-1.png" alt="img">
               </div>
               <div class="mu-testimonial-info">
+                @if(count($popularComment->user->createdCourses))
+                <h4><a href="{{route('userpage',['id'=>$popularComment->user->id])}}">{{$popularComment->user->name}}</a></h4>
+                @else
                 <h4>{{$popularComment->user->name}}</h4>
+                @endif
                 <span>Happy Student</span>
               </div>
             </div>

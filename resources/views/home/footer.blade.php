@@ -25,6 +25,7 @@
                 <li><a href="{{route('faq')}}">My Questions</a></li>
                 <li><a href="#mu-latest-courses">Latest Course</a></li>
                 <li><a href="{{route('contact')}}">Contact</a></li>
+                <li><a href="{{route('home')}}">Home</a></li>
               </ul>
             </div>
           </div>

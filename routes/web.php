@@ -68,6 +68,7 @@ Route::get('/course/{id}', [HomeController::class, 'course'])->name('course');
 Route::get('/categorycourses/{id}/{slug}', [HomeController::class, 'categorycourses'])->name('categorycourses');
 Route::get('/userpage/{id}', [HomeController::class, 'userpage'])->name('userpage');
 
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
@@ -87,6 +88,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/orders', 'orders')->name('orders');
         Route::get('/ordercomplete', 'ordercomplete')->name('ordercomplete');
         Route::post('/storeorder', 'storeorder')->name('storeorder');
+        Route::get('/videopage/{id}', [HomeController::class, 'videopage'])->name('videopage');
     });
 
 

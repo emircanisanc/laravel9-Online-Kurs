@@ -83,15 +83,15 @@
 
                             <div class="form-group">
                                 <label>Videolink</label>
-                                <input class="form-control" name="price" value="{{$data->videolink}}" type="string">
+                                <input class="form-control" name="videolink" value="{{$data->videolink}}" type="string">
                             </div>
 
                             <div class="form-group">
                                 <label>Status</label>
                                 <select class="form-control" name="status">
-                                    <option selected>{{$data->status}}</option>
-                                    <option>True</option>
-                                    <option>False</option>
+                                    <option value="{{$data->status}}" selected>{{$data->status}}</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
                                 </select>
                             </div>
 

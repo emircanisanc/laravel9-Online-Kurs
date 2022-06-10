@@ -65,7 +65,7 @@
                                                         <tr>
                                                             <td><a href="{{route('course', ['id'=>$rs->id])}}">{{$rs->title}}</a></td>
                                                             <td>{{$rs->creator->name}}</td>
-                                                            <td><a href="#" class="btn btn-success" role="button">Watch Now</a></td>
+                                                            <td><a href="{{route('userpanel.videopage', ['id' => $rs->id])}}" class="btn btn-success" role="button">Watch Now</a></td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>

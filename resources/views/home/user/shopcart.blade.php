@@ -70,9 +70,9 @@
                                                         <li> <span>Course Price</span> <span>${{$data->price}}</span></li>
                                                     </ul>
                                                     @if($user->courses->contains('id', $data->id))
-                                                    <a href="#" class="btn btn-success" role="button">Watch Now</a>
+                                                    <a href="{{route('userpanel.videopage', ['id' => $data->id])}}" class="btn btn-success" role="button">Watch Now</a>
                                                     @elseif($user->createdCourses->contains('id', $data->id))
-                                                    <a href="#" class="btn btn-success" role="button">Watch Now</a>
+                                                    <a href="{{route('userpanel.videopage', ['id' => $data->id])}}" class="btn btn-success" role="button">Watch Now</a>
                                                     @else
                                                     <form action="{{route('userpanel.storeorder')}}" method="POST" enctype="multipart/form-data">
                                                          @csrf

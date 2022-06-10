@@ -12,7 +12,7 @@
                 <div class="mu-page-breadcrumb-area">
                     <h2>Course Detail</h2>
                     <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="{{route('home')}}">Home</a></li>
                         <li class="active">Course Detail</li>
                     </ol>
                 </div>
@@ -69,6 +69,7 @@
                                                 <h2>{{$data->title}}</h2>
                                                 <h4>Course Information</h4>
                                                 <ul>
+                                                    <li> <span>Course Teacher</span> <span><a href="{{route('userpage',['id'=>$data->creator->id])}}">{{$data->creator->name}}</a></span></li>
                                                     <li> <span>Course Price</span> <span>${{$data->price}}</span></li>
                                                     <li> <span>Course Rate</span> <span>{{number_format($average, 1)}}</span></li>
                                                     <li> <span>Total Students</span> <span>{{count($data->owners)}}+</span></li>
@@ -110,9 +111,9 @@
                                                 </div>
                                                 @auth
                                                 @if(Auth::user()->courses->contains('id', $data->id))
-                                                <a href="#" class="btn btn-success" role="button">Watch Now</a>
+                                                <a href="{{route('userpanel.videopage', ['id' => $data->id])}}" class="btn btn-success" role="button">Watch Now</a>
                                                 @elseif(Auth::user()->createdCourses->contains('id', $data->id))
-                                                <a href="#" class="btn btn-success" role="button">Watch Now</a>
+                                                <a href="{{route('userpanel.videopage', ['id' => $data->id])}}" class="btn btn-success" role="button">Watch Now</a>
                                                 @else
                                                 <a href="{{route('userpanel.shopcart', ['id'=>$data->id])}}" class="btn btn-info" role="button">Buy Course</a>
                                                 @endif
@@ -179,6 +180,10 @@
                                                             <img alt="img" src="assets/img/testimonial-1.png" class="media-object news-img">
                                                         </div>
                                                         <div class="media-body">
+                                                            @if(count($rs->user->createdCourses))
+                                                            <a href="{{route('userpage',['id'=>$rs->user->id])}}">
+                                                            @endif
+                                                            
                                                             <h3 class="author-name">
                                                                 {{$rs->user->name}}
                                                             </h3>
@@ -187,7 +192,7 @@
                                                             (Creator)
                                                             </h4>    
                                                             @elseif($rs->user->courses->contains('id', $data->id))
-                                                            <h6 style="color: greenyellow;">
+                                                            <h6 style="color: green;">
                                                             (Owner)
                                                             </h6>
                                                             @else
@@ -195,7 +200,10 @@
                                                             (Not Owner)
                                                             </h6> 
                                                             @endif
-                                                           
+
+                                                            @if(count($rs->user->createdCourses))
+                                                            </a>
+                                                            @endif
                                                             <span class="comments-date">{{$rs->created_at}}</span>
                                                             <h5>Rate : {{$rs->rate}}</h5>
                                                             <h4>{{$rs->subject}}</h4>

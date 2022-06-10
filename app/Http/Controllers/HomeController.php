@@ -23,15 +23,15 @@ class HomeController extends Controller
     //
     public function index()
     {
-        $sliderdata=$this->maincategorylist();
-        $popularcategories=Category::skip(3)->limit(6)->get();
-        $courses=Course::latest()->take(5)->get();
-        $popularComments=Comment::limit(3)->where('rate', 5)->get();
-        $setting=Setting::first();
+        $sliderdata = $this->maincategorylist();
+        $popularcategories = Category::skip(3)->limit(6)->get();
+        $courses = Course::latest()->take(5)->get();
+        $popularComments = Comment::limit(3)->where('rate', 5)->get();
+        $setting = Setting::first();
         return view('home.index', [
-            'sliderdata'=>$sliderdata,
-            'courses'=>$courses,
-            'setting'=>$setting,
+            'sliderdata' => $sliderdata,
+            'courses' => $courses,
+            'setting' => $setting,
             'popularcategories' => $popularcategories,
             'popularComments' => $popularComments
         ]);
@@ -39,27 +39,27 @@ class HomeController extends Controller
 
     public function about()
     {
-        $setting=Setting::first();
+        $setting = Setting::first();
         return view('home.about', [
-            'setting'=>$setting 
+            'setting' => $setting
         ]);
     }
 
     public function faq()
     {
-        $setting=Setting::first();
+        $setting = Setting::first();
         $datalist = Faq::all();
         return view('home.faq', [
-            'datalist'=>$datalist,
-            'setting'=>$setting
+            'datalist' => $datalist,
+            'setting' => $setting
         ]);
     }
 
     public function contact()
     {
-        $setting=Setting::first();
+        $setting = Setting::first();
         return view('home.contact', [
-            'setting'=>$setting 
+            'setting' => $setting
         ]);
     }
 
@@ -88,14 +88,14 @@ class HomeController extends Controller
         $data->ip = $request->ip();
         $data->save();
 
-        return redirect()->route('course', ['id'=> $request->input('course_id')])->with('info', 'Your comment has been sent, Thank you.');
+        return redirect()->route('course', ['id' => $request->input('course_id')])->with('info', 'Your comment has been sent, Thank you.');
     }
 
     public function references()
     {
-        $setting=Setting::first();
+        $setting = Setting::first();
         return view('home.references', [
-            'setting'=>$setting 
+            'setting' => $setting
         ]);
     }
 
@@ -106,48 +106,75 @@ class HomeController extends Controller
 
     public function course($id)
     {
-        $setting=Setting::first();
+        $setting = Setting::first();
         $data = Course::find($id);
         $commentlist = Comment::whereIn('course_id', [$id])->where('status', 'True')->get();
-        return view('home.course',
-        [
-            'data' => $data,
-            'commentlist' => $commentlist,
-            'setting' => $setting
-        ]);
+        return view(
+            'home.course',
+            [
+                'data' => $data,
+                'commentlist' => $commentlist,
+                'setting' => $setting
+            ]
+        );
     }
 
     public function categorycourses($id)
     {
-        $setting=Setting::first();
+        $setting = Setting::first();
         $category = Category::find($id);
-        $courselist = DB::table('courses')->where('category_id', $id)->get(); 
-        return view('home.categorycourses',
-        [
-            'category' => $category,
-            'courselist' => $courselist,
-            'setting' => $setting
-        ]);
+        $courselist = DB::table('courses')->where('category_id', $id)->get();
+        return view(
+            'home.categorycourses',
+            [
+                'category' => $category,
+                'courselist' => $courselist,
+                'setting' => $setting
+            ]
+        );
     }
 
     public function userpage($id)
     {
-        $setting=Setting::first();
-        $user = User::find($id); 
-        return view('home.userpage',
-        [
-            'user' => $user,
-            'setting' => $setting
-        ]);
+        $setting = Setting::first();
+        $user = User::find($id);
+        return view(
+            'home.userpage',
+            [
+                'user' => $user,
+                'setting' => $setting
+            ]
+        );
+    }
+
+    public function videopage($id)
+    {
+        $setting = Setting::first();
+        if (Auth::user()->courses->contains('id', $id)) {
+            $contents = Course::find($id)->contents;
+            return view(
+                'home.video',
+                [
+                    'contents' => $contents,
+                    'setting' => $setting
+                ]
+            );
+        }
+        else
+        {
+            return view('home._blan', ['setting' => $setting]);
+        }
     }
 
     public function save(Request $request)
     {
         echo "Save function";
-        return view('home.test2',
-        [
-            'id' => $_REQUEST["fname"]
-        ]);
+        return view(
+            'home.test2',
+            [
+                'id' => $_REQUEST["fname"]
+            ]
+        );
     }
 
     public function logout(Request $request)
@@ -163,17 +190,17 @@ class HomeController extends Controller
 
     public function registeruser()
     {
-        $setting=Setting::first();
+        $setting = Setting::first();
         return view('home.register', [
-            'setting'=>$setting 
+            'setting' => $setting
         ]);
     }
 
     public function loginuser()
     {
-        $setting=Setting::first();
+        $setting = Setting::first();
         return view('home.login', [
-            'setting'=>$setting 
+            'setting' => $setting
         ]);
     }
 
@@ -183,13 +210,13 @@ class HomeController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
+
             return redirect()->intended('/admin');
         }
- 
+
         return back()->withErrors([
             'error' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
