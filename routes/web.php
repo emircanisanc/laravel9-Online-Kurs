@@ -88,6 +88,22 @@ Route::middleware('auth')->group(function () {
         Route::get('/orders', 'orders')->name('orders');
         Route::get('/ordercomplete', 'ordercomplete')->name('ordercomplete');
         Route::post('/storeorder', 'storeorder')->name('storeorder');
+
+        Route::get('/createcourse', 'createcourse')->name('createcourse');
+        Route::get('/showcourse/{id}', 'showcourse')->name('showcourse');
+        Route::post('/storecourse', 'storecourse')->name('storecourse');
+        Route::get('/coursedestroy/{id}', 'coursedestroy')->name('coursedestroy');
+        Route::get('/courseedit/{id}', 'courseedit')->name('courseedit');
+        Route::post('/courseupdate/{id}', 'courseupdate')->name('courseupdate');
+
+        Route::get('/contentindex/{id}', 'contentindex')->name('contentindex');
+        Route::get('/contentcreate/{pid}', 'contentcreate')->name('contentcreate');
+        Route::get('/showcontent/{id}', 'showcontent')->name('showcontent');
+        Route::post('/contentstore', 'contentstore')->name('contentstore');
+        Route::get('/contentdestroy/{pid}/{id}', 'contentdestroy')->name('contentdestroy');
+        Route::get('/contentedit/{id}', 'contentedit')->name('contentedit');
+        Route::post('/contentupdate/{id}', 'contentupdate')->name('contentupdate');
+
         Route::get('/videopage/{id}', [HomeController::class, 'videopage'])->name('videopage');
     });
 

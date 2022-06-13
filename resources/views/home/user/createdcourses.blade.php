@@ -57,7 +57,7 @@
                                                         <tr>
                                                             <th>Course</th>
                                                             <th>Owners</th>
-                                                            <th>Watch Link</th>
+                                                            <th>Show</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -65,12 +65,12 @@
                                                         <tr>
                                                             <td><a href="{{route('course', ['id'=>$rs->id])}}">{{$rs->title}}</a></td>
                                                             <td>{{count($rs->owners)}}</td>
-                                                            <td><a href="#" class="btn btn-primary" role="button">Edit</a></td>
+                                                            <td><a href="{{route('userpanel.showcourse', ['id' => $rs->id])}}" class="btn btn-primary" role="button">Show</a></td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                                <td><a href="#" class="btn btn-success" role="button">Create</a></td>
+                                                <td><a href="{{route('userpanel.createcourse')}}" class="btn btn-success" role="button">Create</a></td>
                                             </div>
                                         </div>
                                     </div>
